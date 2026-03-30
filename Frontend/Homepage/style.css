@@ -71,6 +71,7 @@ main {
 
 .exp-img-wrapper {
     flex: 1;
+    max-width: 40%;
     border-radius: 8px;
     overflow: hidden;
     position: relative;

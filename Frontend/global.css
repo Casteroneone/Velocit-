@@ -43,6 +43,13 @@ header {
     padding: 2rem 5%;
     width: 100%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    /* Navigation Bar When Scrolling Down */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .logo {
