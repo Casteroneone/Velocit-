@@ -41,13 +41,13 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 2rem 5%;
-    margin: 0 auto;
+    width: 100%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .logo {
     font-family: var(--font-serif);
-    font-size: 2rem;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
     font-weight: 600;
     letter-spacing: 1px;
     color: var(--text-primary);
@@ -56,10 +56,11 @@ header {
 nav {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
-    font-size: 0.8rem;
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+    font-size: clamp(0.7rem, 1vw, 0.8rem);
     text-transform: uppercase;
     letter-spacing: 1px;
+    flex-wrap: wrap;
 }
 
 .search-btn {
@@ -69,7 +70,7 @@ nav {
     padding: 0.4rem 1rem;
     color: white;
     font-family: var(--font-sans);
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 1vw, 0.8rem);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -101,14 +102,15 @@ footer {
     padding: 3rem 5%;
     display: flex;
     justify-content: flex-start;
-    gap: 8rem;
+    gap: clamp(3rem, 8vw, 8rem);
     align-items: flex-start;
     margin-top: 5rem;
+    flex-wrap: wrap;
 }
 
 .footer-logo {
     font-family: var(--font-serif);
-    font-size: 2rem;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
     font-weight: 600;
 }
 
