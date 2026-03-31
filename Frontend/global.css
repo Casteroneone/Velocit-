@@ -1,5 +1,5 @@
 :root {
-    --bg-color: #050505;
+    --bg-color: #000000;
     --text-primary: #ffffff;
     --text-secondary: #aaaaaa;
     --accent-color: #bd9d71;
@@ -22,7 +22,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
-    background: radial-gradient(circle at 50% 30%, #1a140f 0%, var(--bg-color) 60%);
+    background: #000000;
 }
 
 a {
