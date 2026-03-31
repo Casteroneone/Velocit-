@@ -32,7 +32,7 @@ main {
 
 .hero-image {
     width: 100%;
-    margin-top: -3rem;
+    margin-top: -6rem;
     position: relative;
     z-index: -1;
     display: flex;
@@ -40,7 +40,7 @@ main {
 }
 
 .hero-image img {
-    width: min(80%, 900px);
+    width: min(65%, 750px);
     height: auto;
     object-fit: cover;
     mask-image: radial-gradient(ellipse at 50% 50%, black 50%, transparent 80%);
