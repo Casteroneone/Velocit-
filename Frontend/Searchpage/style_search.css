@@ -459,3 +459,10 @@ main {
         text-align: center;
     }
 }
+
+
+/* ===== FORCE FONT (EXCEPT HEADER) ===== */
+main, 
+main * {
+    font-family: var(--font-serif) !important;
+}
