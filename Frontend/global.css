@@ -23,6 +23,9 @@ body {
     overflow-x: hidden;
     position: relative;
     background: #000000;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 a {
@@ -106,13 +109,13 @@ nav {
 footer {
     background-color: #B29B80;
     color: #111111;
-    padding: 3rem 5%;
+    padding: 0.6rem 5%;
     display: flex;
     justify-content: flex-start;
     gap: clamp(3rem, 8vw, 8rem);
-    align-items: flex-start;
-    margin-top: 5rem;
+    align-items: center;
     flex-wrap: wrap;
+    margin-top: auto;
 }
 
 .footer-logo {
