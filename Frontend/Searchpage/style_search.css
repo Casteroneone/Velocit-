@@ -258,7 +258,7 @@ main {
     font-family: var(--font-serif);
     font-size: clamp(1.3rem, 2.5vw, 1.8rem);
     font-weight: 600;
-    color: var(--text-primary);
+    color: #A5907C;
     letter-spacing: 0.5px;
 }
 
@@ -282,18 +282,17 @@ main {
    SINGLE CARD
 ======================== */
 .result-card {
-    background-color: #111111;
+    background-color: #D9D9D9;
     border-radius: 8px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: none;
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     cursor: pointer;
 }
 
 .result-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-    border-color: rgba(200, 168, 130, 0.3);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
 }
 
 .card-img-box {
@@ -316,14 +315,19 @@ main {
 
 .card-info {
     padding: 0.9rem 1rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .card-name {
+    width: 100%;
     font-family: var(--font-sans);
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.55rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 0.8rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -336,7 +340,7 @@ main {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0;
     flex-wrap: wrap;
 }
 
@@ -344,20 +348,20 @@ main {
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    background-color: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #A5907C;
+    border: none;
     border-radius: 4px;
-    padding: 0.18rem 0.55rem;
+    padding: 0.2rem 0.55rem;
     font-family: var(--font-sans);
-    font-size: 0.72rem;
-    color: var(--text-secondary);
+    font-size: 0.75rem;
+    color: #000000;
+    font-weight: 600;
 }
 
 .transmission-badge {
-    background-color: rgba(200, 168, 130, 0.12);
-    border-color: rgba(200, 168, 130, 0.3);
-    color: #c8a882;
-    font-weight: 500;
+    background-color: #A5907C;
+    border-color: transparent;
+    color: #000000;
 }
 
 .spec-icon {
@@ -372,20 +376,22 @@ main {
     display: flex;
     align-items: baseline;
     gap: 0.2rem;
+    text-align: right;
 }
 
 .price-amount {
     font-family: var(--font-serif);
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--text-primary);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #000000;
     letter-spacing: 0.3px;
 }
 
 .price-unit {
     font-family: var(--font-sans);
-    font-size: 0.72rem;
-    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #000000;
 }
 
 /* ========================

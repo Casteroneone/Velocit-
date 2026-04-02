@@ -7,6 +7,27 @@ main {
     flex: 1;
 }
 
+/* ========================
+   HEADER OVERRIDES (HOMEPAGE ONLY)
+======================== */
+header .logo {
+    font-size: 2rem; 
+}
+
+header nav {
+    font-size: 0.88rem; 
+}
+
+header .search-btn {
+    font-size: 0.88rem; 
+    padding: 0.45rem 1.1rem;
+}
+
+header .login-btn {
+    font-size: 0.88rem;
+    padding: 0.45rem 1.6rem;
+}
+
 /* HERO SECTION */
 .hero {
     margin-top: clamp(2rem, 5vw, 4rem);
@@ -72,7 +93,7 @@ main {
 
 .exp-img-wrapper {
     flex: 1;
-    max-width: 40%;
+    max-width: 35%;
     border-radius: 8px;
     overflow: hidden;
     position: relative;
@@ -143,26 +164,30 @@ main {
 }
 
 .more-btn {
-    background-color: var(--accent-color);
-    color: var(--bg-color);
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    text-transform: uppercase;
+    background-color: #A5907C;
+    color: #000000;
+    padding: 0.35rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 1px;
+    font-family: var(--font-sans);
+    letter-spacing: 0.5px;
     transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 .more-btn:hover {
-    background-color: white;
-    box-shadow: 0 0 10px var(--accent-glow);
+    background-color: #E3E3E3;
+    transform: translateY(-1px);
 }
 
 .fleets-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(240px, 45%), 1fr));
-    gap: clamp(1rem, 2vw, 1.5rem);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem 2rem;
 }
 
 .fleet-card {

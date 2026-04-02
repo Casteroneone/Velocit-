@@ -57,7 +57,7 @@ header {
 
 .logo {
     font-family: var(--font-serif);
-    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-size: 1.8rem;
     font-weight: 600;
     letter-spacing: 1px;
     color: var(--text-primary);
@@ -66,21 +66,22 @@ header {
 nav {
     display: flex;
     align-items: center;
-    gap: clamp(1rem, 2.5vw, 2.5rem);
-    font-size: clamp(0.7rem, 1vw, 0.8rem);
+    gap: 2rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     flex-wrap: wrap;
 }
 
 .search-btn {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
+    background-color: #A5907C;
+    border: none;
+    border-radius: 6px;
     padding: 0.4rem 1rem;
-    color: white;
+    color: #000000;
     font-family: var(--font-sans);
-    font-size: clamp(0.7rem, 1vw, 0.8rem);
+    font-size: 0.8rem;
+    font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -89,8 +90,8 @@ nav {
 }
 
 .search-btn:hover {
-    border-color: var(--accent-color);
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: #E3E3E3;
+    transform: translateY(-1px);
 }
 
 .login-btn {
