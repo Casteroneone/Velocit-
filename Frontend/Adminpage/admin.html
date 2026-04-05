@@ -6,7 +6,7 @@
     <title>Velocità - Admin Information</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montagu+Slab:opsz,wght@16..144,100..700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Niconne&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../global.css">
     <link rel="stylesheet" href="style_admin.css">
 </head>
@@ -15,16 +15,20 @@
 
     <header class="admin-header">
         <a href="../Homepage/index.html" class="logo">Velocità</a>
-        <div class="header-right">
-            <a href="#" class="nav-link">Fleets Management</a>
-            <div class="profile-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-                <span>Tinna M.</span>
-            </div>
-        </div>
+        <nav class="admin-nav">
+            <a href="../Fleets/fleets.html" class="admin-nav-link">Fleets Management</a>
+            <a href="../Adminpage/admin.html" class="profile-badge">
+                <span class="badge-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </span>
+                <span id="nav-admin-name">Admin</span>
+            </a>
+        </nav>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
     </header>
 
     <main class="admin-main">
@@ -39,9 +43,9 @@
                             <circle cx="12" cy="7" r="4"></circle>
                         </svg>
                     </div>
-                    <h2 class="profile-name">Tinna M.</h2>
-                    <p class="profile-email">tinna.mon@student.mahidol.edu</p>
-                    <p class="profile-id">ID: 6788063 <span class="copy-icon">
+                    <h2 class="profile-name" id="profile-name">—</h2>
+                    <p class="profile-email" id="profile-email">—</p>
+                    <p class="profile-id" id="profile-id">ID: — <span class="copy-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="rgba(41, 30, 13, 0.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                     </span></p>
                 </div>
@@ -71,28 +75,84 @@
                 <div class="info-grid">
                     <div class="info-item">
                         <label>First Name <span class="required">*</span></label>
-                        <p>Tinna</p>
+                        <p id="info-first-name">—</p>
                     </div>
                     <div class="info-item">
                         <label>Last Name <span class="required">*</span></label>
-                        <p>Mongkolsaomoke</p>
+                        <p id="info-last-name">—</p>
                     </div>
                     <div class="info-item">
                         <label>Role <span class="required">*</span></label>
-                        <p>Product Manager</p>
+                        <p id="info-role">—</p>
                     </div>
                     <div class="info-item">
                         <label>Date of Birth <span class="required">*</span></label>
-                        <p>01/01/01</p>
+                        <p id="info-dob">—</p>
                     </div>
                     <div class="info-item full-width">
                         <label>Address <span class="required">*</span></label>
-                        <p>4 Privet Drive, Little Whinging, Surrey, England</p>
+                        <p id="info-address">—</p>
                     </div>
                 </div>
             </div>
 
         </div>
     </main>
+    <script src="../nav.js"></script>
+    <script>
+        const API_BASE = 'http://localhost:5000';
+
+        // ── Load admin data ───────────────────────────────────────
+        async function loadAdmin() {
+            // 1. Try sessionStorage first (set by login page)
+            const stored = sessionStorage.getItem('admin');
+            let admin = stored ? JSON.parse(stored) : null;
+
+            // 2. If not found, fetch from API using stored id
+            if (!admin) {
+                const id = localStorage.getItem('admin_id');
+                if (!id) return;   // not logged in
+                try {
+                    const res = await fetch(`${API_BASE}/api/admin/${id}`);
+                    if (res.ok) admin = await res.json();
+                } catch { return; }
+            }
+
+            if (!admin) return;
+
+            // ── Populate profile card ──────────────────────────────
+            const fullName = `${admin.first_name} ${admin.last_name.charAt(0)}.`;
+            document.getElementById('profile-name').textContent  = fullName;
+            document.getElementById('profile-email').textContent = admin.email || '—';
+            document.getElementById('profile-id').innerHTML =
+                `ID: ${admin.admin_id} <span class="copy-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="rgba(41,30,13,0.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </span>`;
+
+            // ── Populate nav badge ────────────────────────────────
+            document.getElementById('nav-admin-name').textContent = fullName;
+
+            // ── Populate info grid ────────────────────────────────
+            document.getElementById('info-first-name').textContent = admin.first_name || '—';
+            document.getElementById('info-last-name').textContent  = admin.last_name  || '—';
+            document.getElementById('info-role').textContent       = admin.role        || '—';
+            document.getElementById('info-address').textContent    = admin.address     || '—';
+
+            if (admin.date_of_birth) {
+                const d = new Date(admin.date_of_birth);
+                document.getElementById('info-dob').textContent =
+                    d.toLocaleDateString('en-GB');   // DD/MM/YYYY
+            }
+        }
+
+        // ── Logout ────────────────────────────────────────────────
+        document.querySelector('.btn-logout').addEventListener('click', () => {
+            sessionStorage.removeItem('admin');
+            localStorage.removeItem('admin_id');
+            window.location.href = '../Homepage/index.html';
+        });
+
+        loadAdmin();
+    </script>
 </body>
 </html>

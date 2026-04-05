@@ -2,6 +2,21 @@
 //  Velocità — Search Page Filter Logic
 // ===================================================
 
+// ---------- Car card click → detail page ----------
+document.querySelectorAll('.result-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+        const id = card.dataset.id;
+        if (id) window.location.href = `../CarFleets/detail.html?id=${encodeURIComponent(id)}`;
+    });
+});
+
+// ---------- Brand select: turn brown when a value is chosen ----------
+const brandSelect = document.querySelector('#brand-select');
+brandSelect.addEventListener('change', () => {
+    brandSelect.classList.toggle('selected', brandSelect.value !== '');
+});
+
 // ---------- Toggle active state for filter buttons ----------
 document.querySelectorAll('.filter-input button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -48,6 +63,7 @@ document.querySelector('.clear-btn').addEventListener('click', () => {
     // Reset all filters
     document.querySelectorAll('.filter-input button').forEach(b => b.classList.remove('active'));
     document.querySelector('#brand-select').selectedIndex = 0;   // back to blank
+    brandSelect.classList.remove('selected');
     document.querySelector('#model-input').value = '';
 
     // Hide results and warning

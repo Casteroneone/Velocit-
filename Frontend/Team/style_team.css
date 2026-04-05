@@ -1,0 +1,190 @@
+/* =============================================
+   Velocità — Our Team Page
+   ============================================= */
+
+/* Background glow */
+.bg-glow {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(110, 89, 63, 0.75) 0%, rgba(41, 30, 17, 0.2) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ===== TEAM SECTION ===== */
+.team-section {
+    flex: 1;
+    padding: 4rem 5% 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Title */
+.team-title {
+    font-family: 'Montagu Slab', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 500;
+    color: #A5907C;
+    text-align: center;
+    margin-bottom: 3.5rem;
+    letter-spacing: 1px;
+}
+
+/* ===== GRID ===== */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.8rem;
+    max-width: 1050px;
+    width: 100%;
+}
+
+/* ===== CARD ===== */
+.team-card {
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    background: #E3E3E3;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(
+        175deg,
+        #D8C17B 10%,
+        #E3E3E3 90%
+    );
+}
+
+/* ===== AVATAR ===== */
+.card-avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 2rem;
+    margin-bottom: 1.2rem;
+    background: #767676;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.3s ease;
+}
+
+.team-card:hover .card-avatar {
+    background: #e8da90;
+}
+
+.card-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Fallback letter circle when image missing */
+.avatar-fallback {
+    width: 100%;
+    height: 100%;
+    background: #cfcfcd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montagu Slab', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #4b3f34;
+    border-radius: 50%;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.team-card:hover .avatar-fallback {
+    background: #cfcfcd;
+    color: #3a2a00;
+}
+
+/* ===== NAME & ID ===== */
+.card-name {
+    font-family: 'Montagu Slab', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #A5907C;
+    text-align: center;
+    margin-bottom: 0.3rem;
+    padding: 0 1rem;
+    transition: color 0.3s ease;
+}
+
+.team-card:hover .card-name {
+    color: #2a1e00;
+}
+
+.card-id {
+    font-family: 'Montagu Slab', serif;
+    font-size: 0.78rem;
+    color: #888888;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.team-card:hover .card-id {
+    color: #5a4520;
+}
+
+/* ===== SOCIAL ICONS ===== */
+.card-links {
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
+}
+
+.icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888888;
+    transition: color 0.2s, transform 0.2s;
+    text-decoration: none;
+}
+
+.icon-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+.team-card:hover .icon-link {
+    color: #2a1e00;
+}
+
+.icon-link:hover {
+    transform: scale(1.15);
+    color: #5a3a00 !important;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+        max-width: 280px;
+    }
+}

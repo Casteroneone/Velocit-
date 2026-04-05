@@ -33,18 +33,18 @@
                 </svg>
             </div>
 
-            <form action="#" class="login-form">
+            <form id="login-form" class="login-form" onsubmit="handleLogin(event)">
                 <div class="input-group">
-                    <label for="username">Username/E-Mail</label>
-                    <input type="text" id="username" placeholder="">
+                    <label for="username">Username / E-Mail</label>
+                    <input type="text" id="username" placeholder="" autocomplete="username" required>
                 </div>
 
                 <div class="input-group">
                     <label for="password">Password</label>
                     <div class="password-wrapper">
-                        <input type="password" id="password" placeholder="">
-                        <span class="eye-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2"
+                        <input type="password" id="password" placeholder="" autocomplete="current-password" required>
+                        <span class="eye-icon" id="eye-toggle" style="cursor:pointer;">
+                            <svg id="eye-svg" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
@@ -53,13 +53,68 @@
                     </div>
                 </div>
 
+                <!-- Error message -->
+                <p id="login-error" style="color:#c0392b; font-size:0.85rem; margin:-0.5rem 0 0.5rem; display:none;"></p>
+
                 <div class="form-actions">
                     <a href="#" class="forgot-pwd">Forget Password?</a>
-                    <button type="button" class="submit-btn" onclick="window.location.href='../Adminpage/admin.html'">Login</button>
+                    <button type="submit" class="submit-btn" id="login-btn">Login</button>
                 </div>
             </form>
         </div>
     </main>
+
+    <script>
+        // ── Password visibility toggle ─────────────────────────────
+        document.getElementById('eye-toggle').addEventListener('click', function () {
+            const input = document.getElementById('password');
+            input.type = input.type === 'password' ? 'text' : 'password';
+        });
+
+        // ── Login handler ──────────────────────────────────────────
+        async function handleLogin(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const errorEl  = document.getElementById('login-error');
+            const btn      = document.getElementById('login-btn');
+
+            errorEl.style.display = 'none';
+            btn.disabled = true;
+            btn.textContent = 'Logging in…';
+
+            try {
+                const res = await fetch('http://localhost:5000/api/admin/login', {
+                    method:  'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body:    JSON.stringify({ username, password }),
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    errorEl.textContent = data.error || 'Login failed. Please try again.';
+                    errorEl.style.display = 'block';
+                    btn.disabled = false;
+                    btn.textContent = 'Login';
+                    return;
+                }
+
+                // Store admin info for other pages to use
+                sessionStorage.setItem('admin', JSON.stringify(data));
+
+                // Redirect to admin page
+                window.location.href = '../Adminpage/admin.html';
+
+            } catch (err) {
+                errorEl.textContent = 'Cannot connect to server. Make sure the backend is running.';
+                errorEl.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = 'Login';
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -1,44 +1,56 @@
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ========================
+   BACKGROUND GLOW
+======================== */
+.bg-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(ellipse at 50% 45%, rgba(41, 30, 13, 0.75) 0%, rgba(41, 30, 17, 0.2) 50%, transparent 75%);
+    pointer-events: none;
+    z-index: 0;
+}
 /* MAIN CONTAINER */
 main {
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
-    padding: 0 5%;
     flex: 1;
+    position: relative;
+    z-index: 1;
 }
 
-/* ========================
-   HEADER OVERRIDES (HOMEPAGE ONLY)
-======================== */
-header .logo {
-    font-size: 2rem; 
-}
-
-header nav {
-    font-size: 0.88rem; 
-}
-
-header .search-btn {
-    font-size: 0.88rem; 
-    padding: 0.45rem 1.1rem;
-}
-
-header .login-btn {
-    font-size: 0.88rem;
-    padding: 0.45rem 1.6rem;
+.experience,
+.fleets {
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 /* HERO SECTION */
 .hero {
-    margin-top: clamp(2rem, 5vw, 4rem);
     position: relative;
+    min-height: calc(100vh - 70px);
     display: flex;
-    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    padding: 3rem 5% 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
 }
 
 .hero-content h1 {
-    font-family: 'Niconne', cursive;
-    font-size: 100px;
+    font-family: var(--font-script);
+    font-size: clamp(64px, 6vw, 110px);
     font-weight: 400;
     font-style: normal;
     color: var(--accent-color);
@@ -47,33 +59,34 @@ header .login-btn {
 }
 
 .hero-content p {
-    font-size: 20px;
-    color: #cccccc;
-    max-width: min(450px, 90%);
+    font-size: 15px;
+    color: #A5907C;
+    max-width: 420px;
 }
 
 .hero-image {
-    width: 100%;
-    margin-top: -6rem;
-    position: relative;
-    z-index: -1;
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    right: -5%;
+    bottom: 4%;
+    width: 78%;
+    z-index: 1;
+    pointer-events: none;
+    margin-right: 9.5rem;
 }
 
 .hero-image img {
-    width: min(65%, 750px);
+    width: 100%;
     height: auto;
-    object-fit: cover;
-    mask-image: radial-gradient(ellipse at 50% 50%, black 50%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 50%, transparent 80%);
+    object-fit: contain;
+    mask-image: radial-gradient(ellipse at 55% 55%, black 45%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at 55% 55%, black 45%, transparent 75%);
     animation: floatIn 1.5s ease-out forwards;
 }
 
 @keyframes floatIn {
     0% {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
 
     100% {
@@ -84,7 +97,6 @@ header .login-btn {
 
 /* EXPERIENCE SECTION */
 .experience {
-    margin-top: 2rem;
     display: flex;
     align-items: center;
     gap: clamp(2rem, 5vw, 4rem);
@@ -92,28 +104,32 @@ header .login-btn {
 }
 
 .exp-img-wrapper {
-    flex: 1;
-    max-width: 35%;
-    border-radius: 8px;
+    flex: 0 0 42%;
+    max-width: 30%;
+    max-height: 350px;
+    border-radius: 16px;
     overflow: hidden;
     position: relative;
     min-width: 0;
+    aspect-ratio: 4 / 5;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    margin-left: 5rem;
 }
 
 .exp-img-wrapper::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+    inset: 0;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    border-radius: 16px;
     pointer-events: none;
 }
 
 .exp-img-wrapper img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     display: block;
     transition: transform 0.7s ease;
 }
@@ -137,10 +153,11 @@ header .login-btn {
 }
 
 .exp-text p {
-    color: var(--text-secondary);
-    font-size: 20px;
-    margin-bottom: 1rem;
+    color: var(--accent-color);
+    font-size: 15px;
+    margin-bottom: 2rem;
     line-height: 1.8;
+    margin-right: 5rem;
 }
 
 /* FLEETS SECTION */
@@ -170,7 +187,7 @@ header .login-btn {
     border-radius: 6px;
     font-size: 0.8rem;
     font-weight: 600;
-    font-family: var(--font-sans);
+    font-family: var(--font-serif);
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
     text-decoration: none;
@@ -192,6 +209,9 @@ header .login-btn {
 
 .fleet-card {
     cursor: pointer;
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
 
 .fleet-card .img-box {
@@ -245,24 +265,22 @@ header .login-btn {
         flex-direction: column;
     }
 
-    .exp-img-wrapper,
+    .exp-img-wrapper {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+
     .exp-text {
         width: 100%;
     }
 }
 
 @media (max-width: 768px) {
-    nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-        width: 100%;
-    }
 
     header {
         flex-wrap: wrap;
-        justify-content: center;
         gap: 1rem;
     }
 
@@ -271,12 +289,23 @@ header .login-btn {
     }
 }
 
-@media (max-width: 480px) {
-    .fleets-grid {
-        grid-template-columns: 1fr;
+@media (max-width: 768px) {
+    .hero {
+        min-height: 80vh;
+        align-items: flex-start;
+        padding-top: 3rem;
     }
 
     .hero-image {
-        margin-top: -1rem;
+        width: 100%;
+        right: -10%;
+        bottom: 0;
+        opacity: 0.5;
+    }
+}
+
+@media (max-width: 480px) {
+    .fleets-grid {
+        grid-template-columns: 1fr;
     }
 }

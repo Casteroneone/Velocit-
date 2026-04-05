@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montagu+Slab:opsz,wght@16..144,100..700&family=Inter:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Niconne&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../global.css">
     <link rel="stylesheet" href="style_search.css">
@@ -23,15 +23,18 @@
     <header>
         <a href="../Homepage/index.html" class="logo">Velocità</a>
         <nav>
-            <a href="../Homepage/index.html">About Us</a>
+            <a href="../Homepage/index.html#about">About Us</a>
             <a href="../Homepage/index.html#fleets">Car Fleets</a>
-            <a href="#">Our Team</a>
+            <a href="../Team/team.html">Our Team</a>
             <button class="search-btn" onclick="window.location.href='search.html'">
-                <span class="search-icon">🔍︎</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 Search
             </button>
             <a href="../Loginpage/login.html" class="login-btn">Login</a>
         </nav>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
     </header>
 
     <main>
@@ -59,7 +62,7 @@
 
             <!-- Row 2: Car Model -->
             <div class="filter-row">
-                <div class="filter-label">Car Model</div>
+                <div class="filter-label" id="car-model">Car Model</div>
                 <div class="filter-input">
                     <input type="text" id="model-input" placeholder="Car Model">
                 </div>
@@ -127,424 +130,298 @@
             <div class="results-grid">
 
                 <!-- ── Aston Martin ── -->
-                <div class="result-card card-visible" data-brand="Aston Martin" data-model="Aston Martin DB11"
-                    data-transmission="auto" data-seats="2" data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/Aston-Martin-DB11_Auto_2_Seats_2_Doors.jpg" alt="Aston Martin DB11">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Aston Martin DB11</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 2 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Aston Martin" data-model="Aston Martin DB11" data-transmission="auto" data-seats="2" data-doors="2" data-id="VEL-AM-001">
+                    <img class="car-card-img" src="All_brands/Aston-Martin-DB11_Auto_2_Seats_2_Doors.jpg" alt="Aston Martin DB11">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Aston Martin DB11</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>2</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">89,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">89,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="Aston Martin" data-model="Aston Martin DBX"
-                    data-transmission="auto" data-seats="5" data-doors="5">
-                    <div class="card-img-box">
-                        <img src="All_brands/Aston-Martin-DBX_Auto_5_Seats_5_Doors.jpg" alt="Aston Martin DBX">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Aston Martin DBX</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 5 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Aston Martin" data-model="Aston Martin DBX" data-transmission="auto" data-seats="5" data-doors="5" data-id="VEL-AM-002">
+                    <img class="car-card-img" src="All_brands/Aston-Martin-DBX_Auto_5_Seats_5_Doors.jpg" alt="Aston Martin DBX">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Aston Martin DBX</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>5</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">95,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">95,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="Aston Martin" data-model="Aston Martin Victor"
-                    data-transmission="manual" data-seats="2" data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/Aston-Martin-Victor_Manual_2_Seats_2_Doors.jpg" alt="Aston Martin Victor">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Aston Martin Victor</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 2 &nbsp;&nbsp; ♆ Manual</span>
+                <div class="result-card card-visible" data-brand="Aston Martin" data-model="Aston Martin Victor" data-transmission="manual" data-seats="2" data-doors="2" data-id="VEL-AM-003">
+                    <img class="car-card-img" src="All_brands/Aston-Martin-Victor_Manual_2_Seats_2_Doors.jpg" alt="Aston Martin Victor">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Aston Martin Victor</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>2</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Manual</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">110,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">110,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
                 <!-- ── BMW ── -->
-                <div class="result-card card-visible" data-brand="BMW" data-model="BMW M8 Coupe"
-                    data-transmission="auto" data-seats="4" data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/BMW-M8-Coupe_Auto_4_Seats_2_Doors.jpg" alt="BMW M8 Coupe">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">BMW M8 Coupe</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 4 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="BMW" data-model="BMW M8 Coupe" data-transmission="auto" data-seats="4" data-doors="2" data-id="VEL-BM-001">
+                    <img class="car-card-img" src="All_brands/BMW-M8-Coupe_Auto_4_Seats_2_Doors.jpg" alt="BMW M8 Coupe">
+                    <div class="car-card-body">
+                        <p class="car-card-name">BMW M8 Coupe</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>4</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">75,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">75,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="BMW" data-model="BMW X6 M" data-transmission="auto"
-                    data-seats="5" data-doors="5">
-                    <div class="card-img-box">
-                        <img src="All_brands/BMW-X6-M_Auto_5_Seats_5_Doors.jpg" alt="BMW X6 M">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">BMW X6 M</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 5 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="BMW" data-model="BMW X6 M" data-transmission="auto" data-seats="5" data-doors="5" data-id="VEL-BM-002">
+                    <img class="car-card-img" src="All_brands/BMW-X6-M_Auto_5_Seats_5_Doors.jpg" alt="BMW X6 M">
+                    <div class="car-card-body">
+                        <p class="car-card-name">BMW X6 M</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>5</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">68,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">68,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="BMW" data-model="BMW i8 Roadster"
-                    data-transmission="auto" data-seats="2" data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/BMW-i8-Roadster_Auto_2_Seats_2_Doors.jpg" alt="BMW i8 Roadster">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">BMW i8 Roadster</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 2 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="BMW" data-model="BMW i8 Roadster" data-transmission="auto" data-seats="2" data-doors="2" data-id="VEL-BM-003">
+                    <img class="car-card-img" src="All_brands/BMW-i8-Roadster_Auto_2_Seats_2_Doors.jpg" alt="BMW i8 Roadster">
+                    <div class="car-card-body">
+                        <p class="car-card-name">BMW i8 Roadster</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>2</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">72,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">72,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
                 <!-- ── Ferrari ── -->
-                <div class="result-card card-visible" data-brand="Ferrari" data-model="Ferrari 812 Superfast"
-                    data-transmission="auto" data-seats="2" data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/Ferrari-812-Superfast_Auto_2_Seats_2_Doors.jpg"
-                            alt="Ferrari 812 Superfast">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Ferrari 812 Superfast</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 2 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Ferrari" data-model="Ferrari 812 Superfast" data-transmission="auto" data-seats="2" data-doors="2" data-id="VEL-FR-001">
+                    <img class="car-card-img" src="All_brands/Ferrari-812-Superfast_Auto_2_Seats_2_Doors.jpg" alt="Ferrari 812 Superfast">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Ferrari 812 Superfast</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>2</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">130,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">130,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="Ferrari" data-model="Ferrari F8 Tributo"
-                    data-transmission="auto" data-seats="2" data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/Ferrari-F8-Tributo_Auto_2_Seats_2_Doors.jpg" alt="Ferrari F8 Tributo">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Ferrari F8 Tributo</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 2 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Ferrari" data-model="Ferrari F8 Tributo" data-transmission="auto" data-seats="2" data-doors="2" data-id="VEL-FR-002">
+                    <img class="car-card-img" src="All_brands/Ferrari-F8-Tributo_Auto_2_Seats_2_Doors.jpg" alt="Ferrari F8 Tributo">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Ferrari F8 Tributo</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>2</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">110,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">110,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="Ferrari" data-model="Ferrari Purosangue"
-                    data-transmission="auto" data-seats="4" data-doors="5">
-                    <div class="card-img-box">
-                        <img src="All_brands/Ferrari-Purosangue_Auto_4_Seats_5_Doors.jpg" alt="Ferrari Purosangue">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Ferrari Purosangue</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 4 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Ferrari" data-model="Ferrari Purosangue" data-transmission="auto" data-seats="4" data-doors="5" data-id="VEL-FR-003">
+                    <img class="car-card-img" src="All_brands/Ferrari-Purosangue_Auto_4_Seats_5_Doors.jpg" alt="Ferrari Purosangue">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Ferrari Purosangue</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>4</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">150,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">150,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
                 <!-- ── Lamborghini ── -->
-                <div class="result-card card-visible" data-brand="Lamborghini" data-model="Lamborghini Huracan"
-                    data-transmission="auto" data-seats="2" data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/Lamborghini-Huracan_Auto_2_Seats_2_Doors.jpg" alt="Lamborghini Huracan">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Lamborghini Huracan</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 2 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Lamborghini" data-model="Lamborghini Huracan" data-transmission="auto" data-seats="2" data-doors="2" data-id="VEL-LB-001">
+                    <img class="car-card-img" src="All_brands/Lamborghini-Huracan_Auto_2_Seats_2_Doors.jpg" alt="Lamborghini Huracan">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Lamborghini Huracan</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>2</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">120,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">120,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="Lamborghini" data-model="Lamborghini Revuelto"
-                    data-transmission="auto" data-seats="2" data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/Lamborghini-Revuelto_Auto_2_Seats_2_Doors.jpg" alt="Lamborghini Revuelto">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Lamborghini Revuelto</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 2 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Lamborghini" data-model="Lamborghini Revuelto" data-transmission="auto" data-seats="2" data-doors="2" data-id="VEL-LB-002">
+                    <img class="car-card-img" src="All_brands/Lamborghini-Revuelto_Auto_2_Seats_2_Doors.jpg" alt="Lamborghini Revuelto">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Lamborghini Revuelto</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>2</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">145,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">145,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="Lamborghini" data-model="Lamborghini Urus"
-                    data-transmission="auto" data-seats="5" data-doors="5">
-                    <div class="card-img-box">
-                        <img src="All_brands/Lamborghini-Urus_Auto_5_Seats_5_Doors.jpg" alt="Lamborghini Urus">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Lamborghini Urus</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 5 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Lamborghini" data-model="Lamborghini Urus" data-transmission="auto" data-seats="5" data-doors="5" data-id="VEL-LB-003">
+                    <img class="car-card-img" src="All_brands/Lamborghini-Urus_Auto_5_Seats_5_Doors.jpg" alt="Lamborghini Urus">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Lamborghini Urus</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>5</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">115,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">115,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
                 <!-- ── Maserati ── -->
-                <div class="result-card card-visible" data-brand="Maserati" data-model="Maserati GranTurismo"
-                    data-transmission="auto" data-seats="4" data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/Maserati-GranTurismo_Auto_4_Seats_2_Doors.jpg" alt="Maserati GranTurismo">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Maserati GranTurismo</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 4 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Maserati" data-model="Maserati GranTurismo" data-transmission="auto" data-seats="4" data-doors="2" data-id="VEL-MS-001">
+                    <img class="car-card-img" src="All_brands/Maserati-GranTurismo_Auto_4_Seats_2_Doors.jpg" alt="Maserati GranTurismo">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Maserati GranTurismo</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>4</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">78,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">78,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="Maserati" data-model="Maserati MC20"
-                    data-transmission="auto" data-seats="2" data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/Maserati-MC20_Auto_2_Seats_2_Doors.jpg" alt="Maserati MC20">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Maserati MC20</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 2 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Maserati" data-model="Maserati MC20" data-transmission="auto" data-seats="2" data-doors="2" data-id="VEL-MS-002">
+                    <img class="car-card-img" src="All_brands/Maserati-MC20_Auto_2_Seats_2_Doors.jpg" alt="Maserati MC20">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Maserati MC20</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>2</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">95,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">95,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="Maserati" data-model="Maserati Quattroporte"
-                    data-transmission="auto" data-seats="5" data-doors="4">
-                    <div class="card-img-box">
-                        <img src="All_brands/Maserati-Quattroporte_Auto_5_Seats_4_Doors.jpg"
-                            alt="Maserati Quattroporte">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Maserati Quattroporte</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 5 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Maserati" data-model="Maserati Quattroporte" data-transmission="auto" data-seats="5" data-doors="4" data-id="VEL-MS-003">
+                    <img class="car-card-img" src="All_brands/Maserati-Quattroporte_Auto_5_Seats_4_Doors.jpg" alt="Maserati Quattroporte">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Maserati Quattroporte</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>5</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">72,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">72,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
                 <!-- ── Mercedes-Benz ── -->
-                <div class="result-card card-visible" data-brand="Mercedes-Benz"
-                    data-model="Mercedes-Benz AMG GT Black Series" data-transmission="auto" data-seats="2"
-                    data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/Mercedes-Benz-AMG-GT-Black-Series_Auto_2_Seats_2_Doors.jpg"
-                            alt="Mercedes-Benz AMG GT Black Series">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Mercedes-Benz AMG GT Black Series</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 2 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Mercedes-Benz" data-model="Mercedes-Benz AMG GT Black Series" data-transmission="auto" data-seats="2" data-doors="2" data-id="VEL-MB-001">
+                    <img class="car-card-img" src="All_brands/Mercedes-Benz-AMG-GT-Black-Series_Auto_2_Seats_2_Doors.jpg" alt="Mercedes-Benz AMG GT Black Series">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Mercedes-Benz AMG GT Black Series</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>2</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">105,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">105,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="Mercedes-Benz" data-model="Mercedes-Benz CLE 63 AMG"
-                    data-transmission="auto" data-seats="4" data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/Mercedes-Benz-CLE-63-AMG_Auto_4_Seats_2_Doors.jpg"
-                            alt="Mercedes-Benz CLE 63 AMG">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Mercedes-Benz CLE 63 AMG</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 4 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Mercedes-Benz" data-model="Mercedes-Benz CLE 63 AMG" data-transmission="auto" data-seats="4" data-doors="2" data-id="VEL-MB-002">
+                    <img class="car-card-img" src="All_brands/Mercedes-Benz-CLE-63-AMG_Auto_4_Seats_2_Doors.jpg" alt="Mercedes-Benz CLE 63 AMG">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Mercedes-Benz CLE 63 AMG</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>4</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">88,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">88,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="Mercedes-Benz" data-model="Mercedes-Benz G 63 AMG"
-                    data-transmission="auto" data-seats="5" data-doors="5">
-                    <div class="card-img-box">
-                        <img src="All_brands/Mercedes-Benz-G-63-AMG_Auto_5_Seats_5_Doors.jpg"
-                            alt="Mercedes-Benz G 63 AMG">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Mercedes-Benz G 63 AMG</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 5 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Mercedes-Benz" data-model="Mercedes-Benz G 63 AMG" data-transmission="auto" data-seats="5" data-doors="5" data-id="VEL-MB-003">
+                    <img class="car-card-img" src="All_brands/Mercedes-Benz-G-63-AMG_Auto_5_Seats_5_Doors.jpg" alt="Mercedes-Benz G 63 AMG">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Mercedes-Benz G 63 AMG</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>5</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">92,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">92,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
                 <!-- ── Porsche ── -->
-                <div class="result-card card-visible" data-brand="Porsche" data-model="Porsche 911 GT3 RS"
-                    data-transmission="auto" data-seats="2" data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/Porsche-911-GT3-RS_Auto_2_Seats_2_Doors.jpg" alt="Porsche 911 GT3 RS">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Porsche 911 GT3 RS</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 2 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Porsche" data-model="Porsche 911 GT3 RS" data-transmission="auto" data-seats="2" data-doors="2" data-id="VEL-PC-001">
+                    <img class="car-card-img" src="All_brands/Porsche-911-GT3-RS_Auto_2_Seats_2_Doors.jpg" alt="Porsche 911 GT3 RS">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Porsche 911 GT3 RS</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>2</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">120,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">120,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="Porsche" data-model="Porsche 918 Spyder"
-                    data-transmission="auto" data-seats="2" data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/Porsche-918-Spyder_Auto_2_Seats_2_Doors.jpg" alt="Porsche 918 Spyder">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Porsche 918 Spyder</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 2 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Porsche" data-model="Porsche 918 Spyder" data-transmission="auto" data-seats="2" data-doors="2" data-id="VEL-PC-002">
+                    <img class="car-card-img" src="All_brands/Porsche-918-Spyder_Auto_2_Seats_2_Doors.jpg" alt="Porsche 918 Spyder">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Porsche 918 Spyder</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>2</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">160,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">160,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="Porsche" data-model="Porsche Macan"
-                    data-transmission="auto" data-seats="5" data-doors="5">
-                    <div class="card-img-box">
-                        <img src="All_brands/Porsche-Macan_Auto_5_Seats_5_Doors.jpg" alt="Porsche Macan">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Porsche Macan</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 5 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Porsche" data-model="Porsche Macan" data-transmission="auto" data-seats="5" data-doors="5" data-id="VEL-PC-003">
+                    <img class="car-card-img" src="All_brands/Porsche-Macan_Auto_5_Seats_5_Doors.jpg" alt="Porsche Macan">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Porsche Macan</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>5</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">65,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">65,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
                 <!-- ── Tesla ── -->
-                <div class="result-card card-visible" data-brand="Tesla" data-model="Tesla Model 3"
-                    data-transmission="auto" data-seats="5" data-doors="4">
-                    <div class="card-img-box">
-                        <img src="All_brands/Tesla-Model-3_Auto_5_Seats_4_Doors.jpg" alt="Tesla Model 3">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Tesla Model 3</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 5 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Tesla" data-model="Tesla Model 3" data-transmission="auto" data-seats="5" data-doors="4" data-id="VEL-TS-001">
+                    <img class="car-card-img" src="All_brands/Tesla-Model-3_Auto_5_Seats_4_Doors.jpg" alt="Tesla Model 3">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Tesla Model 3</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>5</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">45,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">45,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="Tesla" data-model="Tesla Model Y"
-                    data-transmission="auto" data-seats="5" data-doors="5">
-                    <div class="card-img-box">
-                        <img src="All_brands/Tesla-Model-Y_Auto_5_Seats_5_Doors.jpg" alt="Tesla Model Y">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Tesla Model Y</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 5 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Tesla" data-model="Tesla Model Y" data-transmission="auto" data-seats="5" data-doors="5" data-id="VEL-TS-002">
+                    <img class="car-card-img" src="All_brands/Tesla-Model-Y_Auto_5_Seats_5_Doors.jpg" alt="Tesla Model Y">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Tesla Model Y</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>5</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">48,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">48,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
-                <div class="result-card card-visible" data-brand="Tesla" data-model="Tesla Roadster"
-                    data-transmission="auto" data-seats="4" data-doors="2">
-                    <div class="card-img-box">
-                        <img src="All_brands/Tesla-Roadster_Auto_4_Seats_2_Doors.jpg" alt="Tesla Roadster">
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-name">Tesla Roadster</h3>
-                        <div class="card-specs">
-                            <span class="spec-badge">👤 4 &nbsp;&nbsp; ♆ Auto</span>
+                <div class="result-card card-visible" data-brand="Tesla" data-model="Tesla Roadster" data-transmission="auto" data-seats="4" data-doors="2" data-id="VEL-TS-003">
+                    <img class="car-card-img" src="All_brands/Tesla-Roadster_Auto_4_Seats_2_Doors.jpg" alt="Tesla Roadster">
+                    <div class="car-card-body">
+                        <p class="car-card-name">Tesla Roadster</p>
+                        <div class="car-card-badges">
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>4</span>
+                            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Auto</span>
                         </div>
-                        <div class="card-price">
-                            <span class="price-amount">85,000</span>
-                            <span class="price-unit"> /day</span>
-                        </div>
+                        <div class="car-card-price"><span class="price-amount">85,000</span><span class="price-unit">/ day</span></div>
                     </div>
                 </div>
 
@@ -556,12 +433,13 @@
         <div class="footer-logo">Velocità</div>
         <div class="footer-info">
             <h4>CONTACT INFO</h4>
-            <p>Phone: 012-345-6789</p>
-            <p>Email: info@velocita.com</p>
-            <p>Location: 124 Madison St. W Triangle Blvd, Region Triangle, Bangkok</p>
+            <p>Phone: 1212312121</p>
+            <p>Email: velocita@email.com</p>
+            <p>Location: 111 Soi Sukhumvit 55 (Thonglor Road), Bangkok Thonglor, Bangkok</p>
         </div>
     </footer>
 
+    <script src="../nav.js"></script>
     <script src="search.js"></script>
 </body>
 

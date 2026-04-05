@@ -21,51 +21,6 @@ body {
     z-index: 0;
 }
 
-.admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 5%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    position: relative;
-    z-index: 100;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-.nav-link {
-    font-family: var(--font-serif);
-    color: #FFFFFF;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 600;
-}
-
-.profile-badge {
-    background-color: #A5907C;
-    border-radius: 20px;
-    padding: 0.4rem 1rem 0.4rem 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.profile-badge svg {
-    width: 20px;
-    height: 20px;
-}
-
-.profile-badge span {
-    font-family: var(--font-serif);
-    color: #000000;
-    font-weight: 700;
-    font-size: 0.9rem;
-}
-
 /* ========================
    MAIN CONTAINER
 ======================== */
@@ -92,46 +47,44 @@ body {
 .profile-card-wrapper {
     display: flex;
     flex-direction: column;
-    width: 298px;
+    width: 380px;
     flex-shrink: 0;
 }
 
 .profile-card {
     background-color: #A5907C;
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 3rem 2rem 2.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 298px;
-    min-height: 233px;
     box-sizing: border-box;
 }
 
 .profile-avatar {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     background-color: #000000;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     flex-shrink: 0;
 }
 
 .profile-avatar svg {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
 }
 
 .profile-name {
     font-family: var(--font-serif);
-    font-size: 1.5rem;
+    font-size: 2.2rem;
     color: #000000;
     font-weight: 700;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
     letter-spacing: 0.5px;
 }
 
@@ -141,7 +94,6 @@ body {
     font-size: 1rem;
     font-weight: 700;
     color: rgba(41, 30, 13, 0.85);
-    /* Dark brown */
     margin-bottom: 0.8rem;
 }
 
@@ -186,17 +138,6 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.btn-logout {
-    background-color: rgba(102, 102, 102, 0.8);
-    /* Closer to #666666 from properties */
-    color: #FFFFFF;
-    border: none;
-}
-
-.btn-logout:hover {
-    background-color: rgba(102, 102, 102, 1);
-}
-
 /* ========================
    RIGHT COLUMN
 ======================== */
@@ -218,24 +159,34 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .info-header h2 {
     font-family: var(--font-serif);
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #FFFFFF;
     font-weight: 700;
 }
 
-.edit-icon {
+.cancel-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    padding: 0;
     cursor: pointer;
     opacity: 0.7;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, background 0.2s ease;
 }
 
-.edit-icon:hover {
+.cancel-btn:hover {
     opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .divider {
@@ -266,20 +217,10 @@ body {
     font-size: 0.95rem;
     font-weight: 700;
     color: rgba(41, 30, 13, 0.75);
-    /* Match exactly the #291E0D at 75% opacity */
 }
 
 .required {
     color: #550909;
-    /* Exact dark red from spec */
-}
-
-.info-item p {
-    font-family: var(--font-serif);
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #000000;
-    margin: 0;
 }
 
 .info-input {
@@ -288,15 +229,17 @@ body {
     border-radius: 6px;
     padding: 0.7rem 1rem;
     font-family: var(--font-serif);
-    font-size: 1.15rem;
+    font-size: 0.90rem;
     font-weight: 700;
     color: #000000;
     width: 100%;
     box-sizing: border-box;
+    transition: box-shadow 0.2s ease;
 }
 
 .info-input:focus {
     outline: none;
+    box-shadow: 0 0 0 2px rgba(84, 115, 65, 0.5);
 }
 
 .address-input {
@@ -364,13 +307,5 @@ select.info-input {
 @media (max-width: 600px) {
     .info-grid {
         grid-template-columns: 1fr;
-    }
-
-    .header-right {
-        gap: 1rem;
-    }
-
-    .nav-link {
-        display: none;
     }
 }

@@ -21,50 +21,7 @@ body {
     z-index: 0;
 }
 
-.admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 5%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    position: relative;
-    z-index: 100;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-.nav-link {
-    font-family: var(--font-serif);
-    color: #FFFFFF;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 600;
-}
-
-.profile-badge {
-    background-color: #A5907C;
-    border-radius: 20px;
-    padding: 0.4rem 1rem 0.4rem 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.profile-badge svg {
-    width: 20px;
-    height: 20px;
-}
-
-.profile-badge span {
-    font-family: var(--font-serif);
-    color: #000000;
-    font-weight: 700;
-    font-size: 0.9rem;
-}
+/* Admin header styles now live in global.css */
 
 /* ========================
    MAIN CONTAINER
@@ -125,7 +82,7 @@ body {
 }
 
 .profile-name {
-    font-family: var(--font-serif);
+    font-family: 'Montagu Slab', serif;
     font-size: 2.2rem;
     color: #000000;
     font-weight: 700;
@@ -135,7 +92,7 @@ body {
 
 .profile-email,
 .profile-id {
-    font-family: var(--font-serif);
+    font-family: 'Montagu Slab', serif;
     font-size: 1rem;
     font-weight: 700;
     color: rgba(41, 30, 13, 0.85);
@@ -162,7 +119,7 @@ body {
     gap: 0.5rem;
     padding: 0.6rem 1.2rem;
     border-radius: 8px;
-    font-family: var(--font-serif);
+    font-family: 'Montagu Slab', serif;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -203,7 +160,7 @@ body {
     border-radius: 12px;
     padding: 2.5rem 3rem;
     flex: 1;
-    height: 390px;
+    height: 455px;
     box-sizing: border-box;
 }
 
@@ -212,11 +169,13 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+    font-weight: 100;
+    font-family: 'Montagu Slab', serif;
 }
 
 .info-header h2 {
-    font-family: var(--font-serif);
-    font-size: 2rem;
+    font-family: 'Montagu Slab', serif;
+    font-size: 1.5rem;
     color: #FFFFFF;
     font-weight: 700;
 }
@@ -255,7 +214,7 @@ body {
 }
 
 .info-item label {
-    font-family: var(--font-serif);
+    font-family: 'Montagu Slab', serif;
     font-size: 0.95rem;
     font-weight: 700;
     color: rgba(41, 30, 13, 0.75);
@@ -268,7 +227,7 @@ body {
 }
 
 .info-item p {
-    font-family: var(--font-serif);
+    font-family: 'Montagu Slab', serif;
     font-size: 1.15rem;
     font-weight: 700;
     color: #000000;
