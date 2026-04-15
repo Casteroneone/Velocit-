@@ -1,0 +1,269 @@
+/* ========================
+   ADMIN LAYOUT
+======================== */
+body {
+    background-color: #000000;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.bg-glow {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(120, 70, 20, 0.45) 0%, rgba(80, 40, 10, 0.2) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Admin header styles now live in global.css */
+
+/* ========================
+   MAIN CONTAINER
+======================== */
+.admin-main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 5rem 5%;
+    position: relative;
+    z-index: 1;
+}
+
+.admin-container {
+    display: flex;
+    gap: 2.5rem;
+    max-width: 1000px;
+    width: 100%;
+}
+
+/* ========================
+   LEFT COLUMN
+======================== */
+.profile-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    flex-shrink: 0;
+}
+
+.profile-card {
+    background-color: #A5907C;
+    border-radius: 12px;
+    padding: 3rem 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    background-color: #000000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+}
+
+.profile-avatar svg {
+    width: 60px;
+    height: 60px;
+}
+
+.profile-name {
+    font-family: 'Montagu Slab', serif;
+    font-size: 2.2rem;
+    color: #000000;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.profile-email,
+.profile-id {
+    font-family: 'Montagu Slab', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgba(41, 30, 13, 0.85);
+    /* Dark brown */
+    margin-bottom: 0.8rem;
+}
+
+.profile-id {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-family: 'Montagu Slab', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-delete {
+    background-color: transparent;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+}
+
+.btn-delete:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-logout {
+    background-color: rgba(102, 102, 102, 0.8);
+    /* Closer to #666666 from properties */
+    color: #FFFFFF;
+    border: none;
+}
+
+.btn-logout:hover {
+    background-color: rgba(102, 102, 102, 1);
+}
+
+/* ========================
+   RIGHT COLUMN
+======================== */
+.info-card {
+    background-color: #A5907C;
+    border-radius: 12px;
+    padding: 2.5rem 3rem;
+    flex: 1;
+    height: 455px;
+    box-sizing: border-box;
+}
+
+.info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-weight: 100;
+    font-family: 'Montagu Slab', serif;
+}
+
+.info-header h2 {
+    font-family: 'Montagu Slab', serif;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.edit-icon {
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.edit-icon:hover {
+    opacity: 1;
+}
+
+.divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 2rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2rem;
+    column-gap: 2rem;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.info-item label {
+    font-family: 'Montagu Slab', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: rgba(41, 30, 13, 0.75);
+    /* Match exactly the #291E0D at 75% opacity */
+}
+
+.required {
+    color: #550909;
+    /* Exact dark red from spec */
+}
+
+.info-item p {
+    font-family: 'Montagu Slab', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #000000;
+    margin: 0;
+}
+
+/* ========================
+   RESPONSIVE
+======================== */
+@media (max-width: 900px) {
+    .admin-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-card-wrapper {
+        width: 100%;
+        max-width: 480px;
+    }
+
+    .info-card {
+        width: 100%;
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 600px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header-right {
+        gap: 1rem;
+    }
+
+    .nav-link {
+        display: none;
+    }
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velocità - Admin Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montagu+Slab:opsz,wght@16..144,100..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="style_login.css">
+</head>
+
+<body>
+    <div class="bg-glow"></div>
+
+    <!-- Back button -->
+    <a href="../Homepage/index.html" class="back-link">
+        &#8592; Back to Home
+    </a>
+
+    <main class="login-wrapper">
+        <div class="login-box">
+            <a href="../Homepage/index.html" class="login-logo">Velocità</a>
+            <h1 class="login-title">Admin Login</h1>
+
+            <div class="profile-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+
+            <form id="login-form" class="login-form" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label for="username">Username / E-Mail</label>
+                    <input type="text" id="username" placeholder="" autocomplete="username" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" placeholder="" autocomplete="current-password" required>
+                        <span class="eye-icon" id="eye-toggle" style="cursor:pointer;">
+                            <svg id="eye-svg" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Error message -->
+                <p id="login-error" style="color:#c0392b; font-size:0.85rem; margin:-0.5rem 0 0.5rem; display:none;"></p>
+
+                <div class="form-actions">
+                    <a href="#" class="forgot-pwd">Forget Password?</a>
+                    <button type="submit" class="submit-btn" id="login-btn">Login</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // ── Password visibility toggle ─────────────────────────────
+        document.getElementById('eye-toggle').addEventListener('click', function () {
+            const input = document.getElementById('password');
+            input.type = input.type === 'password' ? 'text' : 'password';
+        });
+
+        // ── Login handler ──────────────────────────────────────────
+        async function handleLogin(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const errorEl  = document.getElementById('login-error');
+            const btn      = document.getElementById('login-btn');
+
+            errorEl.style.display = 'none';
+            btn.disabled = true;
+            btn.textContent = 'Logging in…';
+
+            try {
+                const res = await fetch('http://localhost:5000/api/admin/login', {
+                    method:  'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body:    JSON.stringify({ username, password }),
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    errorEl.textContent = data.error || 'Login failed. Please try again.';
+                    errorEl.style.display = 'block';
+                    btn.disabled = false;
+                    btn.textContent = 'Login';
+                    return;
+                }
+
+                // Store admin info for other pages to use
+                sessionStorage.setItem('admin', JSON.stringify(data));
+
+                // Redirect to admin page
+                window.location.href = '../Adminpage/admin.html';
+
+            } catch (err) {
+                errorEl.textContent = 'Cannot connect to server. Make sure the backend is running.';
+                errorEl.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = 'Login';
+            }
+        }
+    </script>
+</body>
+
+</html>

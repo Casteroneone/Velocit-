@@ -1,0 +1,327 @@
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ========================
+   BACKGROUND GLOW
+======================== */
+.bg-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(ellipse at 50% 45%, rgba(41, 30, 13, 0.75) 0%, rgba(41, 30, 17, 0.2) 50%, transparent 75%);
+    pointer-events: none;
+    z-index: 0;
+}
+/* MAIN CONTAINER */
+main {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.experience,
+.fleets {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+/* HERO SECTION */
+.hero {
+    position: relative;
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
+    padding: 3rem 5% 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+}
+
+.hero-content h1 {
+    font-family: var(--font-script);
+    font-size: clamp(64px, 6vw, 110px);
+    font-weight: 400;
+    font-style: normal;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+}
+
+.hero-content p {
+    font-size: 15px;
+    color: #A5907C;
+    max-width: 420px;
+}
+
+.hero-image {
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+
+    /* glow สวยขึ้น */
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.8));
+
+    /* animation เดิม */
+    animation: floatIn 1.5s ease-out forwards;
+}
+
+.hero-image::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(165,144,124,0.25), transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+@keyframes floatIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* EXPERIENCE SECTION */
+.experience {
+    display: flex;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+    padding: 3rem 0;
+}
+
+.exp-img-wrapper {
+    flex: 0 0 42%;
+    max-width: 30%;
+    max-height: 350px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    min-width: 0;
+    aspect-ratio: 4 / 5;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    margin-left: 5rem;
+}
+
+.exp-img-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    border-radius: 16px;
+    pointer-events: none;
+}
+
+.exp-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.7s ease;
+}
+
+.exp-img-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+.exp-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.exp-text h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 400;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.exp-text p {
+    color: var(--accent-color);
+    font-size: 15px;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+    margin-right: 5rem;
+}
+
+/* FLEETS SECTION */
+.fleets {
+    margin-top: clamp(3rem, 5vw, 5rem);
+    margin-bottom: clamp(3rem, 6vw, 6rem);
+}
+
+.fleets-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.fleets-header h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.more-btn {
+    background-color: #A5907C;
+    color: #000000;
+    padding: 0.35rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: var(--font-serif);
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.more-btn:hover {
+    background-color: #E3E3E3;
+    transform: translateY(-1px);
+}
+
+.fleets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem 2rem;
+}
+
+.fleet-card {
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.fleet-card .img-box {
+    width: 100%;
+    aspect-ratio: 4/2.5;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.8rem;
+    background-color: var(--card-bg);
+    position: relative;
+}
+
+.fleet-card .img-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+}
+
+.fleet-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.fleet-card:hover img {
+    transform: scale(1.1);
+}
+
+.fleet-card h3 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+.fleet-card:hover h3 {
+    color: var(--accent-color);
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .experience {
+        flex-direction: column;
+    }
+
+    .exp-img-wrapper {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+
+    .exp-text {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    header {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .fleets-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 80vh;
+        align-items: flex-start;
+        padding-top: 3rem;
+    }
+
+    .hero-image {
+        width: 100%;
+        right: -10%;
+        bottom: 0;
+        opacity: 0.5;
+    }
+}
+
+@media (max-width: 480px) {
+    .fleets-grid {
+        grid-template-columns: 1fr;
+    }
+}

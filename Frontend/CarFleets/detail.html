@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velocità - Car Detail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Niconne&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="style_detail.css">
+</head>
+
+<body>
+    <div class="bg-glow"></div>
+
+    <!-- HEADER -->
+    <header>
+        <a href="../Homepage/index.html" class="logo">Velocità</a>
+        <nav>
+            <a href="../Homepage/index.html#about">About Us</a>
+            <a href="../Homepage/index.html#fleets">Car Fleets</a>
+            <a href="../Team/team.html">Our Team</a>
+            <button class="search-btn" onclick="window.location.href='../Searchpage/search.html'">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                Search
+            </button>
+            <a href="../Loginpage/login.html" class="login-btn">Login</a>
+        </nav>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <main>
+        <!-- ===== MAIN DETAIL SECTION ===== -->
+        <section class="detail-section" id="detail-section">
+
+            <!-- Left: Car Image Card -->
+            <div class="detail-img-wrapper">
+                <img id="detail-img" src="" alt="Car Image" style="display:none;" onerror="this.style.display='none'">
+                <div class="detail-img-label" id="detail-img-label"></div>
+            </div>
+
+            <!-- Right: Info Panel -->
+            <div class="detail-info">
+
+                <!-- Specs badges row -->
+                <div class="spec-badges" id="spec-badges">
+                    <!-- Filled by JS -->
+                </div>
+
+                <!-- Description -->
+                <div class="detail-description">
+                    <p class="detail-tagline" id="detail-tagline"></p>
+                    <p class="detail-desc-text" id="detail-desc-text"></p>
+                    <p class="detail-contact">For reservations and more info, Please contact us!</p>
+                </div>
+
+                <!-- Price -->
+                <div class="detail-price-row">
+                    <span class="detail-price-amount" id="detail-price"></span>
+                    <span class="detail-price-unit">/ day</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== YOU MAY ALSO LIKE ===== -->
+        <section class="also-like-section">
+            <h2 class="also-like-title">You may also like</h2>
+            <div class="also-like-grid" id="also-like-grid">
+                <!-- Filled by JS -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">Velocità</div>
+        <div class="footer-info">
+            <h4>CONTACT INFO</h4>
+            <p>Phone: 1212312121</p>
+            <p>Email: velocita@email.com</p>
+            <p>Location: 111 Soi Sukhumvit 55 (Thonglor Road), Bangkok Thonglor, Bangkok</p>
+        </div>
+    </footer>
+
+    <script src="../nav.js"></script>
+    <script src="detail.js"></script>
+</body>
+
+</html>

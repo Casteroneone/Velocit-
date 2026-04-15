@@ -1,0 +1,22 @@
+{
+  "name": "velocita-api",
+  "version": "1.0.0",
+  "description": "Velocita REST API - Node.js Express MySQL",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "mysql2": "^3.22.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

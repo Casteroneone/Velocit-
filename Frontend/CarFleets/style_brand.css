@@ -1,0 +1,167 @@
+/* =============================================
+   Velocità — Car Fleets Brand Page
+   ============================================= */
+
+/* ---------- Brand Hero Title ---------- */
+.brand-hero {
+    text-align: center;
+    padding: 3rem 5% 1.5rem;
+}
+
+.brand-title {
+    font-family: 'Niconne', cursive;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 400;
+    color: #A5907C;
+    letter-spacing: 2px;
+}
+
+/* ---------- Cars Section ---------- */
+.cars-section {
+    padding: 2rem 6% 4rem;
+    flex: 1;
+}
+
+.cars-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ---------- Car Card ---------- */
+.car-card {
+    background: #D9D9D9;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.car-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Card Image */
+.car-card-img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    display: block;
+}
+
+/* Card Image placeholder */
+.car-card-img-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: #1e1e1e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-size: 0.85rem;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Card Body — grid: name spans full width, badges + price share bottom row */
+.car-card-body {
+    padding: 1rem 1.2rem 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    column-gap: 0.75rem;
+}
+
+.car-card-name {
+    grid-column: 1 / -1;
+    font-family: 'Montagu Slab', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+/* Badges Row */
+.car-card-badges {
+    grid-column: 1;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: #A5907C;
+    border-radius: 4px;
+    padding: 0.2rem 0.55rem;
+    font-family: 'Montagu Slab', serif;
+    font-size: 0.75rem;
+    color: #000000;
+}
+
+.badge svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+}
+
+/* Price */
+.car-card-price {
+    grid-column: 2;
+    display: flex;
+    align-items: baseline;
+    gap: 0.2rem;
+    justify-content: flex-end;
+}
+
+.price-amount {
+    font-family: 'Montagu Slab', serif;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: #000000;
+    letter-spacing: -0.5px;
+}
+
+.price-unit {
+    font-family: 'Montagu Slab', serif;
+    font-size: 0.78rem;
+    color: #000000;
+}
+
+/* ---------- No cars ---------- */
+.no-cars {
+    text-align: center;
+    color: #aaaaaa;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    padding: 4rem 0;
+}
+
+/* ---------- Loading state ---------- */
+.skeleton {
+    background: linear-gradient(90deg, #1a1a1a 25%, #222 50%, #1a1a1a 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+    border-radius: 8px;
+}
+
+@keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+    .cars-grid {
+        grid-template-columns: 1fr;
+    }
+    .brand-title {
+        font-size: 2.4rem;
+    }
+}

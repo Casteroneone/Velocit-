@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velocità - Admin Edit Info</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Niconne&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="style_admin_edit.css">
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <!-- NAV — matches fleets management structure -->
+    <header class="admin-header">
+        <a href="../Homepage/index.html" class="logo">Velocità</a>
+        <nav class="admin-nav">
+            <a href="../Fleets/fleets.html" class="admin-nav-link">Fleets Management</a>
+            <a href="../Adminpage/admin.html" class="profile-badge">
+                <span class="badge-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </span>
+                <span id="nav-admin-name">Admin</span>
+            </a>
+        </nav>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <main class="admin-main">
+        <div class="admin-container">
+
+            <!-- Left Column: Profile Card -->
+            <div class="profile-card-wrapper">
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h2 class="profile-name" id="profile-name">—</h2>
+                    <p class="profile-email" id="profile-email">—</p>
+                    <p class="profile-id" id="profile-id">ID: —
+                        <span class="copy-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(41, 30, 13, 0.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </span>
+                    </p>
+                </div>
+
+                <div class="profile-actions" style="justify-content: center;">
+                    <button class="action-btn btn-delete" id="btn-delete">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                        Delete
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-column-wrapper">
+                <div class="info-card">
+                    <div class="info-header">
+                        <h2>Admin Information</h2>
+                        <!-- X = cancel, go back to admin page -->
+                        <button class="cancel-btn" id="btn-cancel" title="Cancel">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#550909" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="divider"></div>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>First Name <span class="required">*</span></label>
+                            <input type="text" id="f-first-name" class="info-input" placeholder="First Name">
+                        </div>
+                        <div class="info-item">
+                            <label>Last Name <span class="required">*</span></label>
+                            <input type="text" id="f-last-name" class="info-input" placeholder="Last Name">
+                        </div>
+                        <div class="info-item">
+                            <label>Role <span class="required">*</span></label>
+                            <select id="f-role" class="info-input">
+                                <option value="Product Manager">Product Manager</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Staff">Staff</option>
+                            </select>
+                        </div>
+                        <div class="info-item">
+                            <label>Date of Birth <span class="required">*</span></label>
+                            <input type="date" id="f-dob" class="info-input">
+                        </div>
+                        <div class="info-item full-width">
+                            <label>Address <span class="required">*</span></label>
+                            <textarea id="f-address" class="info-input address-input" placeholder="Address"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Save button aligned right, below the card -->
+                <div class="info-actions">
+                    <button class="btn-save" id="btn-save">Save</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="../nav.js"></script>
+    <script>
+        const API_BASE = 'http://localhost:5000';
+        let adminId = null;
+
+        // ── Cancel — go back to admin page ───────────────────────
+        document.getElementById('btn-cancel').addEventListener('click', () => {
+            window.location.href = '../Adminpage/admin.html';
+        });
+
+        // ── Load admin data into form ─────────────────────────────
+        async function loadAdmin() {
+            const stored = sessionStorage.getItem('admin');
+            let admin = stored ? JSON.parse(stored) : null;
+
+            if (!admin) {
+                const id = localStorage.getItem('admin_id');
+                if (!id) return;
+                try {
+                    const res = await fetch(`${API_BASE}/api/admin/${id}`);
+                    if (res.ok) admin = await res.json();
+                } catch { return; }
+            }
+
+            if (!admin) return;
+            adminId = admin.admin_id;
+
+            const fullName = `${admin.first_name} ${admin.last_name.charAt(0)}.`;
+            document.getElementById('profile-name').textContent  = fullName;
+            document.getElementById('profile-email').textContent = admin.email || '—';
+            document.getElementById('profile-id').innerHTML =
+                `ID: ${admin.admin_id} <span class="copy-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="rgba(41,30,13,0.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </span>`;
+
+            document.getElementById('nav-admin-name').textContent = fullName;
+
+            // Populate form fields
+            document.getElementById('f-first-name').value = admin.first_name || '';
+            document.getElementById('f-last-name').value  = admin.last_name  || '';
+            document.getElementById('f-address').value    = admin.address    || '';
+            document.getElementById('f-role').value       = admin.role       || 'Admin';
+
+            if (admin.date_of_birth) {
+                const d = new Date(admin.date_of_birth);
+                document.getElementById('f-dob').value = d.toISOString().split('T')[0];
+            }
+        }
+
+        // ── Save changes ──────────────────────────────────────────
+        document.getElementById('btn-save').addEventListener('click', async () => {
+            if (!adminId) { alert('Not logged in.'); return; }
+
+            const payload = {
+                first_name:    document.getElementById('f-first-name').value.trim(),
+                last_name:     document.getElementById('f-last-name').value.trim(),
+                role:          document.getElementById('f-role').value,
+                date_of_birth: document.getElementById('f-dob').value,
+                address:       document.getElementById('f-address').value.trim(),
+            };
+
+            if (!payload.first_name || !payload.last_name) {
+                alert('First name and last name are required.');
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_BASE}/api/admin/${adminId}`, {
+                    method:  'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body:    JSON.stringify(payload),
+                });
+                if (!res.ok) throw new Error();
+                const updated = await res.json();
+
+                const storedRaw = JSON.parse(sessionStorage.getItem('admin') || '{}');
+                sessionStorage.setItem('admin', JSON.stringify({ ...storedRaw, ...updated }));
+
+                alert('Saved successfully!');
+                window.location.href = '../Adminpage/admin.html';
+            } catch {
+                alert('Failed to save. Please try again.');
+            }
+        });
+
+        loadAdmin();
+    </script>
+</body>
+</html>
