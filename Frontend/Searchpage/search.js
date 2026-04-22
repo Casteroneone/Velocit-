@@ -1,110 +1,183 @@
 // ===================================================
-//  Velocità — Search Page Filter Logic
+//  Velocità — Search Page
+//  Pulls results from /api/cars/search
 // ===================================================
 
-// ---------- Car card click → detail page ----------
-document.querySelectorAll('.result-card').forEach(card => {
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', () => {
-        const id = card.dataset.id;
-        if (id) window.location.href = `../CarFleets/detail.html?id=${encodeURIComponent(id)}`;
+const API_BASE = 'http://localhost:3030';
+
+// ── State ─────────────────────────────────────────
+let selectedTransmission = null;
+let selectedSeats        = null;
+let selectedDoors        = null;
+
+// ── Toggle button groups ───────────────────────────
+function initToggleGroup(groupId, onSelect) {
+    const group = document.getElementById(groupId);
+    if (!group) return;
+    group.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const already = btn.classList.contains('active');
+            group.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            if (!already) {
+                btn.classList.add('active');
+                onSelect(btn.textContent.trim());
+            } else {
+                onSelect(null);
+            }
+        });
     });
-});
-
-// ---------- Brand select: turn brown when a value is chosen ----------
-const brandSelect = document.querySelector('#brand-select');
-brandSelect.addEventListener('change', () => {
-    brandSelect.classList.toggle('selected', brandSelect.value !== '');
-});
-
-// ---------- Toggle active state for filter buttons ----------
-document.querySelectorAll('.filter-input button').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const group = btn.closest('.filter-input');
-        const isActive = btn.classList.contains('active');
-        group.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        if (!isActive) btn.classList.add('active');
-    });
-});
-
-// ---------- Helper: check if any filter is selected ----------
-function hasAnyFilter() {
-    const brand        = document.querySelector('#brand-select').value;
-    const model        = document.querySelector('#model-input').value.trim();
-    const transActive  = document.querySelector('#transmission-group .active');
-    const seatsActive  = document.querySelector('#seats-group .active');
-    const doorsActive  = document.querySelector('#doors-group .active');
-
-    return brand !== '' || model !== '' || transActive || seatsActive || doorsActive;
 }
 
-// ---------- Search button ----------
-document.querySelector('.search-action-btn').addEventListener('click', () => {
-    const warning = document.querySelector('#filter-warning');
+initToggleGroup('transmission-group', val => { selectedTransmission = val; });
+initToggleGroup('seats-group',        val => { selectedSeats        = val; });
+initToggleGroup('doors-group',        val => { selectedDoors        = val; });
 
-    if (!hasAnyFilter()) {
-        // Show warning, keep results hidden
-        warning.style.display = 'flex';
+// ── Search button ──────────────────────────────────
+document.getElementById('search-btn').addEventListener('click', runSearch);
+
+// ── Clear button ───────────────────────────────────
+document.getElementById('clear-btn').addEventListener('click', () => {
+    document.getElementById('brand-select').selectedIndex = 0;
+    document.getElementById('model-input').value = '';
+    selectedTransmission = null;
+    selectedSeats        = null;
+    selectedDoors        = null;
+
+    document.querySelectorAll('#transmission-group button, #seats-group button, #doors-group button')
+        .forEach(b => b.classList.remove('active'));
+
+    document.getElementById('filter-warning').style.display  = 'none';
+    document.getElementById('results-section').style.display = 'none';
+});
+
+// ── Status helper ──────────────────────────────────
+function getStatusStyle(status) {
+    switch (status) {
+        case 'Available':   return { cls: 'status-available', label: 'Available'   };
+        case 'Rented':      return { cls: 'status-reserved',  label: 'Rented'      };
+        case 'Maintenance': return { cls: 'status-repair',    label: 'Maintenance' };
+        default:            return { cls: 'status-available', label: status        };
+    }
+}
+
+// ── Run search ─────────────────────────────────────
+async function runSearch() {
+    const brand        = document.getElementById('brand-select').value;
+    const model        = document.getElementById('model-input').value.trim();
+    const transmission = selectedTransmission;
+    const seats        = selectedSeats;
+    const doors        = selectedDoors;
+
+    // Require at least one filter
+    const hasFilter = (brand && brand !== '') || model || transmission || seats || doors;
+    if (!hasFilter) {
+        document.getElementById('filter-warning').style.display = 'block';
         return;
     }
+    document.getElementById('filter-warning').style.display = 'none';
 
-    // Hide warning, show results
-    warning.style.display = 'none';
-    document.querySelector('#results-section').style.display = 'block';
+    // Build query string
+    const params = new URLSearchParams();
+    if (brand)        params.append('brand',        brand);
+    if (model)        params.append('model',        model);
+    if (transmission) params.append('transmission', transmission);
+    if (seats)        params.append('seats',        seats);
+    if (doors)        params.append('doors',        doors);
 
-    filterCars();
+    // UI setup
+    const resultsSection = document.getElementById('results-section');
+    const grid           = document.querySelector('.results-grid');
+    const noResult       = document.getElementById('no-result');
+    const countEl        = document.querySelector('.result-count');
 
-    // Smooth scroll to results
-    document.querySelector('#results-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
+    resultsSection.style.display = 'block';
+    grid.innerHTML = '<p style="color:#ccc; padding:20px;">Searching...</p>';
+    noResult.style.display = 'none';
 
-// ---------- Clear button ----------
-document.querySelector('.clear-btn').addEventListener('click', () => {
-    // Reset all filters
-    document.querySelectorAll('.filter-input button').forEach(b => b.classList.remove('active'));
-    document.querySelector('#brand-select').selectedIndex = 0;   // back to blank
-    brandSelect.classList.remove('selected');
-    document.querySelector('#model-input').value = '';
+    try {
+        const res  = await fetch(`${API_BASE}/api/cars/search?${params.toString()}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const cars = await res.json();
 
-    // Hide results and warning
-    document.querySelector('#results-section').style.display = 'none';
-    document.querySelector('#filter-warning').style.display = 'none';
-});
+        grid.innerHTML = '';
 
-// ---------- Core filter function ----------
-function filterCars() {
-    const brand        = document.querySelector('#brand-select').value;
-    const model        = document.querySelector('#model-input').value.trim().toLowerCase();
-    const transBtn     = document.querySelector('#transmission-group .active');
-    const seatsBtn     = document.querySelector('#seats-group .active');
-    const doorsBtn     = document.querySelector('#doors-group .active');
-
-    const transmission = transBtn ? transBtn.textContent.toLowerCase() : '';
-    const seats        = seatsBtn ? seatsBtn.textContent : '';
-    const doors        = doorsBtn ? doorsBtn.textContent : '';
-
-    const cards = document.querySelectorAll('.result-card');
-    let visibleCount = 0;
-
-    cards.forEach(card => {
-        const matchBrand        = !brand || brand === 'all' || card.dataset.brand === brand;
-        const matchModel        = !model || card.dataset.model.toLowerCase().includes(model);
-        const matchTransmission = !transmission || card.dataset.transmission === transmission;
-        const matchSeats        = !seats || card.dataset.seats === seats;
-        const matchDoors        = !doors || card.dataset.doors === doors;
-
-        if (matchBrand && matchModel && matchTransmission && matchSeats && matchDoors) {
-            card.style.display = '';
-            visibleCount++;
-        } else {
-            card.style.display = 'none';
+        if (cars.length === 0) {
+            noResult.style.display = 'block';
+            countEl.textContent    = '0 cars found';
+            return;
         }
-    });
 
-    // Update count label
-    const label = document.querySelector('.result-count');
-    label.textContent = `${visibleCount} car${visibleCount !== 1 ? 's' : ''} found`;
+        countEl.textContent = `${cars.length} car${cars.length !== 1 ? 's' : ''} found`;
 
-    // Show / hide no-result message
-    document.querySelector('#no-result').style.display = visibleCount === 0 ? 'flex' : 'none';
+        cars.forEach(car => {
+            const card = document.createElement('div');
+            card.className = 'result-card card-visible';
+
+            // ── Make card clickable → go to detail page ──
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', () => {
+            window.location.href = `../CarFleets/detail.html?id=${car.vehicle_id}`;
+            });
+
+            const imgSrc         = car.image_url || 'https://placehold.co/400x220/1a1a1a/888?text=No+Image';
+            const { cls, label } = getStatusStyle(car.status);
+
+            card.innerHTML = `
+                <div style="position: relative;">
+                    <img class="car-card-img"
+                         src="${imgSrc}"
+                         alt="${car.car_brands} ${car.car_model}"
+                         onerror="this.src='https://placehold.co/400x220/1a1a1a/888?text=No+Image'">
+                    <span class="status-badge ${cls}" style="
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        font-size: 11px;
+                        padding: 3px 10px;
+                        border-radius: 20px;
+                        font-weight: 600;
+                        letter-spacing: 0.5px;
+                        pointer-events: none;
+                    ">${label}</span>
+                </div>
+                <div class="car-card-body">
+                    <p class="car-card-name">${car.car_brands} ${car.car_model}</p>
+                    <div class="car-card-badges">
+                        <span class="badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            ${car.seats} Seats
+                        </span>
+                        <span class="badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                                <path d="M4.93 4.93a10 10 0 0 0 0 14.14"/>
+                            </svg>
+                            ${car.transmission}
+                        </span>
+                        <span class="badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                            </svg>
+                            ${car.doors} Doors
+                        </span>
+                    </div>
+                    <div class="car-card-price">
+                        <span class="price-amount">${Number(car.daily_price).toLocaleString()}</span>
+                        <span class="price-unit">/ day</span>
+                    </div>
+                </div>
+            `;
+
+            grid.appendChild(card);
+        });
+
+    } catch (err) {
+        console.error('Search error:', err);
+        grid.innerHTML = '<p style="color:#e74c3c; padding:20px;">Failed to search. Make sure the server is running.</p>';
+    }
 }

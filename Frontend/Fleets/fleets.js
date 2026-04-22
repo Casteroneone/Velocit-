@@ -5,7 +5,7 @@
 //              seats, doors, details, image_url (joined)
 // ===================================================
 
-const API_BASE = 'http://localhost:5000';
+const API_BASE = 'http://localhost:3030';
 
 // ===================================================
 //  STATE
@@ -21,11 +21,17 @@ let editingId      = null;        // null = add mode, number = edit mode
 // ===================================================
 async function loadVehicles() {
     try {
-        const res = await fetch(`${API_BASE}/api/vehicles`);
-        if (!res.ok) throw new Error();
+        console.log('Fetching from:', `${API_BASE}/api/cars`);
+        const res = await fetch(`${API_BASE}/api/cars`);
+        if (!res.ok) {
+            console.error('API error:', res.status, res.statusText);
+            throw new Error(`HTTP ${res.status}`);
+        }
         vehicles = await res.json();
-    } catch {
-        // API unavailable — use empty list (no mock needed now DB is real)
+        console.log('Loaded vehicles:', vehicles.length, vehicles);
+    } catch (err) {
+        console.error('Failed to load vehicles:', err);
+        alert('Could not load vehicles. Make sure the backend server is running on ' + API_BASE);
         vehicles = [];
     }
     applyFilters();
@@ -75,6 +81,13 @@ function renderTable() {
             <td class="col-check">
                 <input type="checkbox" class="row-check" data-id="${id}" ${selectedIds.has(id) ? 'checked' : ''}>
             </td>
+            <td>
+    ${v.image_url
+        ? `<img src="${v.image_url}" alt="${v.car_model}" 
+               style="width:80px; height:50px; object-fit:cover; border-radius:4px;"
+               onerror="this.style.display='none'">`
+        : `<span style="color:#888; font-size:12px;">No image</span>`}
+</td>
             <td>${id}</td>
             <td>${v.car_brands}</td>
             <td>${v.car_model}</td>
@@ -178,7 +191,7 @@ document.getElementById('confirm-delete').addEventListener('click', async () => 
     const idsToDelete = deleteTargetId !== null ? [deleteTargetId] : [...selectedIds];
 
     await Promise.all(idsToDelete.map(id =>
-        fetch(`${API_BASE}/api/vehicles/${id}`, { method: 'DELETE' }).catch(() => {})
+        fetch(`${API_BASE}/api/cars/${id}`, { method: 'DELETE' }).catch(() => {})
     ));
 
     vehicles = vehicles.filter(v => !idsToDelete.includes(v.vehicle_id));
@@ -314,7 +327,7 @@ document.getElementById('form-save').addEventListener('click', async () => {
     if (editingId !== null) {
         // EDIT
         try {
-            const res = await fetch(`${API_BASE}/api/vehicles/${editingId}`, {
+            const res = await fetch(`${API_BASE}/api/cars/${editingId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
@@ -330,7 +343,7 @@ document.getElementById('form-save').addEventListener('click', async () => {
     } else {
         // ADD
         try {
-            const res = await fetch(`${API_BASE}/api/vehicles`, {
+            const res = await fetch(`${API_BASE}/api/cars`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
