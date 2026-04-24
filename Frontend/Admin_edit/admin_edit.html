@@ -115,7 +115,7 @@
 
     <script src="../nav.js"></script>
     <script>
-        const API_BASE = 'http://localhost:5000';
+        const API_BASE = 'http://localhost:3030';
         let adminId = null;
 
         // ── Cancel — go back to admin page ───────────────────────
@@ -125,19 +125,13 @@
 
         // ── Load admin data into form ─────────────────────────────
         async function loadAdmin() {
-            const stored = sessionStorage.getItem('admin');
-            let admin = stored ? JSON.parse(stored) : null;
+            const stored = localStorage.getItem('admin');
+            const admin = stored ? JSON.parse(stored) : null;
 
             if (!admin) {
-                const id = localStorage.getItem('admin_id');
-                if (!id) return;
-                try {
-                    const res = await fetch(`${API_BASE}/api/admin/${id}`);
-                    if (res.ok) admin = await res.json();
-                } catch { return; }
+                window.location.href = '../Loginpage/login.html';
+                return;
             }
-
-            if (!admin) return;
             adminId = admin.admin_id;
 
             const fullName = `${admin.first_name} ${admin.last_name.charAt(0)}.`;
@@ -188,8 +182,8 @@
                 if (!res.ok) throw new Error();
                 const updated = await res.json();
 
-                const storedRaw = JSON.parse(sessionStorage.getItem('admin') || '{}');
-                sessionStorage.setItem('admin', JSON.stringify({ ...storedRaw, ...updated }));
+                const storedRaw = JSON.parse(localStorage.getItem('admin') || '{}');
+                localStorage.setItem('admin', JSON.stringify({ ...storedRaw, ...updated }));
 
                 alert('Saved successfully!');
                 window.location.href = '../Adminpage/admin.html';

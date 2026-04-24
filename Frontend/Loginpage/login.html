@@ -65,6 +65,11 @@
     </main>
 
     <script>
+        // Redirect already-logged-in admins straight to the dashboard
+        if (localStorage.getItem('admin')) {
+            window.location.replace('../Adminpage/admin.html');
+        }
+
         // ── Password visibility toggle ─────────────────────────────
         document.getElementById('eye-toggle').addEventListener('click', function () {
             const input = document.getElementById('password');
@@ -102,7 +107,7 @@
                 }
 
                 // Store admin info for other pages to use
-                sessionStorage.setItem('admin', JSON.stringify(data));
+                localStorage.setItem('admin', JSON.stringify(data));
 
                 // Redirect to admin page
                 window.location.href = '../Adminpage/admin.html';

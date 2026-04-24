@@ -1,7 +1,21 @@
 // =============================================
-//  Velocità — Global Hamburger Nav Toggle
+//  Velocità — Global Nav (Hamburger + Auth)
 // =============================================
 (function () {
+    // ── Auth-aware login link ──────────────────────────────────
+    const loginLink = document.querySelector('a.login-btn');
+    if (loginLink) {
+        const stored = localStorage.getItem('admin');
+        const admin  = stored ? JSON.parse(stored) : null;
+        if (admin) {
+            const name = `${admin.first_name} ${admin.last_name.charAt(0)}.`;
+            loginLink.textContent = name;
+            loginLink.href = '../Adminpage/admin.html';
+            loginLink.title = 'Go to admin panel';
+        }
+    }
+
+    // ── Hamburger menu toggle ──────────────────────────────────
     const hamburger = document.getElementById('hamburger');
     if (!hamburger) return;
 
@@ -23,23 +37,19 @@
         header.classList.contains('nav-open') ? closeNav() : openNav();
     }
 
-    // Toggle on hamburger click
     hamburger.addEventListener('click', function (e) {
         e.stopPropagation();
         toggleNav();
     });
 
-    // Close when any nav link is clicked
     header.querySelectorAll('nav a, .admin-nav a, nav button').forEach(el => {
         el.addEventListener('click', closeNav);
     });
 
-    // Close when clicking outside the header
     document.addEventListener('click', function (e) {
         if (!header.contains(e.target)) closeNav();
     });
 
-    // Close on Escape key
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeNav();
     });
