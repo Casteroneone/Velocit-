@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velocità - Luxury Car Rental</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Niconne&family=Montagu+Slab:opsz,wght@16..144,100..700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="bg-glow"></div>
+    <header>
+        <a href="index.html" class="logo">Velocità</a>
+        <nav>
+            <a href="index.html#about">About Us</a>
+            <a href="index.html#fleets">Car Fleets</a>
+            <a href="../Team/team.html">Our Team</a>
+            <button class="search-btn" onclick="window.location.href='../Searchpage/search.html'">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                Search
+            </button>
+            <a href="../Loginpage/login.html" class="login-btn">Login</a>
+        </nav>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>From Click to Drive.</h1>
+                <p>Velocità, Premium car rentals designed for comfort, performance, and total freedom.</p>
+            </div>
+            <div class="hero-image">
+                <img src="./assets/hero_car.png" alt="Bentley Convertible" class="car-img" id="hero-img">
+            </div>
+        </section>
+
+        <section class="experience" id="about">
+            <div class="exp-img-wrapper">
+                <img src="./assets/luxury_interior.png" alt="Luxury Interior">
+            </div>
+            <div class="exp-text">
+                <h2>The Luxury Experience<br>You'll Remember</h2>
+                <p>Welcome to Velocità, a luxury car rental experience designed for those who appreciate the finer
+                    things in life. We offer a carefully curated fleet of premium vehicles that combine elegance,
+                    performance, and comfort. From our exclusive selection to exceptional service, every detail counts.
+                </p>
+                <p>Velocità ensures you arrive with confidence, style, and distinction—always at your speed.</p>
+            </div>
+        </section>
+
+        <section class="fleets" id="fleets">
+            <div class="fleets-header">
+                <h2>Car Fleets</h2>
+                <button class="search-btn" onclick="window.location.href='../Searchpage/search.html'">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                Search
+            </button>
+            </div>
+            <div class="fleets-grid">
+                <a href="../CarFleets/brand.html?brand=Aston+Martin" class="fleet-card">
+                    <div class="img-box"><img src="./assets/aston.png" alt="Aston Martin"></div>
+                    <h3>Aston Martin</h3>
+                </a>
+                <a href="../CarFleets/brand.html?brand=BMW" class="fleet-card">
+                    <div class="img-box"><img src="./assets/bmw.png" alt="BMW"></div>
+                    <h3>BMW</h3>
+                </a>
+                <a href="../CarFleets/brand.html?brand=Ferrari" class="fleet-card">
+                    <div class="img-box"><img src="./assets/ferrari.png" alt="Ferrari"></div>
+                    <h3>Ferrari</h3>
+                </a>
+                <a href="../CarFleets/brand.html?brand=Lamborghini" class="fleet-card">
+                    <div class="img-box"><img src="./assets/lambo.png" alt="Lamborghini"></div>
+                    <h3>Lamborghini</h3>
+                </a>
+                <a href="../CarFleets/brand.html?brand=Maserati" class="fleet-card">
+                    <div class="img-box"><img src="./assets/marserati.jpg" alt="Maserati"></div>
+                    <h3>Maserati</h3>
+                </a>
+                <a href="../CarFleets/brand.html?brand=Mercedes-Benz" class="fleet-card">
+                    <div class="img-box"><img src="./assets/mercedes.jpg" alt="Mercedes-Benz"></div>
+                    <h3>Mercedes-Benz</h3>
+                </a>
+                <a href="../CarFleets/brand.html?brand=Porsche" class="fleet-card">
+                    <div class="img-box"><img src="./assets/porsche1.jpg" alt="Porsche"></div>
+                    <h3>Porsche</h3>
+                </a>
+                <a href="../CarFleets/brand.html?brand=Tesla" class="fleet-card">
+                    <div class="img-box"><img src="./assets/tesla.webp" alt="Tesla"></div>
+                    <h3>Tesla</h3>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">Velocità</div>
+        <div class="footer-content" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; max-width: 1200px; margin: 0 auto; text-align: left;">
+            <div class="footer-info" style="flex: 1; min-width: 250px;">
+                <h4>CONTACT INFO</h4>
+                <p>Phone: 1212312121</p>
+                <p>Email: velocita@email.com</p>
+                <p>Location: 111 Soi Sukhumvit 55 (Thonglor Road), Bangkok Thonglor, Bangkok</p>
+            </div>
+            <div class="footer-map" style="flex: 1; min-width: 280px;">
+                <h4>OUR LOCATION</h4>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m3!1d3875.698308477025!2d100.5794833!3d13.736717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29e52c80dbb59%3A0xe541ba3a9485bb24!2sSoi%20Sukhumvit%2055%2C%20Bangkok!5e0!3m2!1sen!2sth!4v1700000000000!5m2!1sen!2sth" width="100%" height="200" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </footer>
+    <script src="../nav.js"></script>
+    <script>
+        // Smooth scroll to hash when arriving from another page
+        window.addEventListener('load', () => {
+            const hash = window.location.hash;
+            if (hash) {
+                const target = document.querySelector(hash);
+                if (target) {
+                    setTimeout(() => {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        });
+
+        // Smooth scroll for all on-page anchor links
+        document.querySelectorAll('a[href^="#"], a[href*="index.html#"]').forEach(link => {
+            link.addEventListener('click', e => {
+                const href = link.getAttribute('href');
+                const hashIndex = href.indexOf('#');
+                if (hashIndex === -1) return;
+                const id = href.slice(hashIndex + 1);
+                const target = document.getElementById(id);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.pushState(null, '', '#' + id);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
