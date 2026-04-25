@@ -67,22 +67,60 @@
                 </div>
 
                 <!-- Error message -->
-                <p id="login-error" style="color:#c0392b; font-size:0.85rem; margin:-0.5rem 0 0.5rem; display:none;"></p>
+                <p id="login-error" style="color:#7f1313; font-size:0.85rem; margin:-0.5rem 0 0.5rem; display:none;"></p>
 
                 <div class="form-actions">
-                    <a href="#" class="forgot-pwd">Forget Password?</a>
+                    <a href="#" class="forgot-pwd" id="forgot-pwd-btn">Forget Password?</a>
                     <button type="submit" class="submit-btn" id="login-btn">Login</button>
                 </div>
             </form>
         </div>
     </main>
 
+    <!-- Forgot Password Modal -->
+    <div class="modal-overlay" id="forgot-modal">
+        <div class="modal-box">
+            <div class="modal-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+            </div>
+            <h3 class="modal-title">Forgot Password?</h3>
+            <p class="modal-message">Please contact the supervisor to reset your password.</p>
+            <button class="modal-close-btn" id="forgot-modal-close">Close</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">Velocità</div>
+        <div class="footer-info">
+            <h4>CONTACT INFO</h4>
+            <p>Phone: 1212312121</p>
+            <p>Email: velocita@email.com</p>
+            <p>Location: 111 Soi Sukhumvit 55 (Thonglor Road), Bangkok Thonglor, Bangkok</p>
+        </div>
+    </footer>
+
     <script src="../nav.js"></script>
     <script>
         // Redirect already-logged-in admins straight to the dashboard
         if (localStorage.getItem('admin')) {
-            window.location.replace('../Adminpage/admin.html');
+            window.location.replace('../Fleets/fleets.html');
         }
+
+        // ── Forgot password modal ─────────────────────────────────
+        document.getElementById('forgot-pwd-btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('forgot-modal').style.display = 'flex';
+        });
+        document.getElementById('forgot-modal-close').addEventListener('click', function () {
+            document.getElementById('forgot-modal').style.display = 'none';
+        });
+        document.getElementById('forgot-modal').addEventListener('click', function (e) {
+            if (e.target === this) this.style.display = 'none';
+        });
 
         // ── Password visibility toggle ─────────────────────────────
         document.getElementById('eye-toggle').addEventListener('click', function () {
@@ -123,8 +161,8 @@
                 // Store admin info for other pages to use
                 localStorage.setItem('admin', JSON.stringify(data));
 
-                // Redirect to admin page
-                window.location.href = '../Adminpage/admin.html';
+                // Redirect to fleets management
+                window.location.href = '../Fleets/fleets.html';
 
             } catch (err) {
                 errorEl.textContent = 'Cannot connect to server. Make sure the backend is running.';

@@ -128,17 +128,7 @@ async function runSearch() {
                          src="${imgSrc}"
                          alt="${car.car_brands} ${car.car_model}"
                          onerror="this.src='https://placehold.co/400x220/1a1a1a/888?text=No+Image'">
-                    <span class="status-badge ${cls}" style="
-                        position: absolute;
-                        top: 10px;
-                        right: 10px;
-                        font-size: 11px;
-                        padding: 3px 10px;
-                        border-radius: 20px;
-                        font-weight: 600;
-                        letter-spacing: 0.5px;
-                        pointer-events: none;
-                    ">${label}</span>
+                    <span class="status-badge ${cls}">${label}</span>
                 </div>
                 <div class="car-card-body">
                     <p class="car-card-name">${car.car_brands} ${car.car_model}</p>
@@ -148,7 +138,7 @@ async function runSearch() {
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                                 <circle cx="12" cy="7" r="4"/>
                             </svg>
-                            ${car.seats} Seats
+                            ${car.seats}
                         </span>
                         <span class="badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -157,13 +147,6 @@ async function runSearch() {
                                 <path d="M4.93 4.93a10 10 0 0 0 0 14.14"/>
                             </svg>
                             ${car.transmission}
-                        </span>
-                        <span class="badge">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="7" width="20" height="14" rx="2"/>
-                                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
-                            </svg>
-                            ${car.doors} Doors
                         </span>
                     </div>
                     <div class="car-card-price">

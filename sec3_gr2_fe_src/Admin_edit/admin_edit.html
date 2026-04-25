@@ -152,9 +152,18 @@
             document.getElementById('profile-name').textContent  = fullName;
             document.getElementById('profile-email').textContent = admin.email || '—';
             document.getElementById('profile-id').innerHTML =
-                `ID: ${admin.admin_id} <span class="copy-icon">
+                `ID: ${admin.admin_id} <span class="copy-icon" title="Copy ID" style="cursor:pointer;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="rgba(41,30,13,0.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                 </span>`;
+
+            // ── Copy ID to clipboard ──────────────────────────────
+            document.querySelector('.copy-icon').addEventListener('click', () => {
+                navigator.clipboard.writeText(String(admin.admin_id)).then(() => {
+                    const icon = document.querySelector('.copy-icon svg');
+                    icon.style.stroke = '#3a9a3a';
+                    setTimeout(() => { icon.style.stroke = 'rgba(41,30,13,0.75)'; }, 1500);
+                });
+            });
 
             document.getElementById('nav-admin-name').textContent = fullName;
 

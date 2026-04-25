@@ -231,7 +231,6 @@ function openEditModal(id) {
 
     document.getElementById('f-brand').value   = v.car_brands;
     document.getElementById('f-model').value   = v.car_model;
-    document.getElementById('f-title').value   = '';
     document.getElementById('f-year').value    = v.year;
     document.getElementById('f-price').value   = v.daily_price;
     document.getElementById('f-plate').value   = v.license_plate;
@@ -264,7 +263,7 @@ function closeFormModal() {
 }
 
 function resetForm() {
-    ['f-brand','f-model','f-title','f-year','f-price','f-plate','f-details'].forEach(id => {
+    ['f-brand','f-model','f-year','f-price','f-plate','f-details'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = '';
     });

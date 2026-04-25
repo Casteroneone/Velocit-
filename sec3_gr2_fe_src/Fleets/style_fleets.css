@@ -94,7 +94,7 @@ body {
     width: 13px;
     height: 13px;
     pointer-events: none;
-    stroke: #aaa;
+    stroke: #1a1a1a;
 }
 
 /* Search filter */
@@ -109,7 +109,7 @@ body {
     left: 0.55rem;
     width: 13px;
     height: 13px;
-    stroke: #aaa;
+    stroke: #1a1a1a;
     pointer-events: none;
 }
 
@@ -134,7 +134,7 @@ body {
     background: #d8c8b0;
 }
 
-.filter-search input::placeholder { color: #888; }
+.filter-search input::placeholder { color: #1a1a1a; }
 
 /* Action buttons */
 .action-btns {
@@ -256,6 +256,7 @@ body {
 
 /* ===== STATUS BADGES ===== */
 .status-badge {
+    position: static;
     display: inline-block;
     padding: 0.22rem 0.7rem;
     border-radius: 20px;
@@ -499,8 +500,8 @@ body {
 
 .form-group textarea {
     resize: vertical;
-    min-height: 100px;
-    flex: 1;
+    min-height: 200px;
+    flex: auto;
 }
 
 /* Select wrap */

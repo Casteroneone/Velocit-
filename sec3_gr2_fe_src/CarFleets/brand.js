@@ -30,11 +30,23 @@ function normalize(car) {
 // ===================================================
 async function fetchCarsByBrand(brand) {
     const res = await fetch(
-        `${API_BASE}/api/cars/search?brand=${encodeURIComponent(brand)}&status=Available`
+        `${API_BASE}/api/cars/search?brand=${encodeURIComponent(brand)}`
     );
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     return data.map(normalize);
+}
+
+// ===================================================
+//  STATUS HELPER
+// ===================================================
+function getStatusStyle(status) {
+    switch (status) {
+        case 'Available':   return { cls: 'status-available', label: 'Available'   };
+        case 'Rented':      return { cls: 'status-reserved',  label: 'Rented'      };
+        case 'Maintenance': return { cls: 'status-repair',    label: 'Maintenance' };
+        default:            return { cls: 'status-available', label: status        };
+    }
 }
 
 // ===================================================
@@ -60,14 +72,18 @@ function renderCards(cars) {
             window.location.href = `detail.html?id=${encodeURIComponent(car.vehicle_id)}`;
         });
 
+        const { cls, label } = getStatusStyle(car.status);
         card.innerHTML = `
-            <img
-                class="car-card-img"
-                src="${car.image || ''}"
-                alt="${car.brand} ${car.model}"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            >
-            <div class="car-card-img-placeholder" style="display:none;">No image available</div>
+            <div style="position: relative;">
+                <img
+                    class="car-card-img"
+                    src="${car.image || ''}"
+                    alt="${car.brand} ${car.model}"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+                <div class="car-card-img-placeholder" style="display:none;">No image available</div>
+                <span class="status-badge ${cls}">${label}</span>
+            </div>
             <div class="car-card-body">
                 <p class="car-card-name">${car.year} ${car.brand} ${car.model}</p>
                 <div class="car-card-badges">
@@ -77,7 +93,7 @@ function renderCards(cars) {
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                             <circle cx="12" cy="7" r="4"/>
                         </svg>
-                        ${car.seats} Seats
+                        ${car.seats}
                     </span>
                     <span class="badge">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -87,14 +103,6 @@ function renderCards(cars) {
                             <path d="M4.93 4.93a10 10 0 0 0 0 14.14"/>
                         </svg>
                         ${car.transmission}
-                    </span>
-                    <span class="badge">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                             stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="7" width="20" height="14" rx="2"/>
-                            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
-                        </svg>
-                        ${car.doors} Doors
                     </span>
                 </div>
                 <div class="car-card-price">

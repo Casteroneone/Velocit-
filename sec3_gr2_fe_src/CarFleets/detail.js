@@ -153,16 +153,7 @@ function renderAlsoLike(cars) {
                      src="${car.image || ''}"
                      alt="${car.brand} ${car.model}"
                      onerror="this.src=''; this.style.background='#1e1e1e';">
-                <span class="status-badge ${cls}" style="
-                    position: absolute;
-                    top: 8px;
-                    right: 8px;
-                    font-size: 10px;
-                    padding: 2px 8px;
-                    border-radius: 20px;
-                    font-weight: 600;
-                    pointer-events: none;
-                ">${label}</span>
+                <span class="status-badge ${cls}">${label}</span>
             </div>
             <div class="also-card-body">
                 <p class="also-card-name">${car.year} ${car.brand} ${car.model}</p>
@@ -198,26 +189,28 @@ function renderAlsoLike(cars) {
 
 // ===================================================
 //  PUBLIC WEB SERVICE: Live Currency Rates
-//  Source: Frankfurter API (https://api.frankfurter.app) — free, no API key
+//  Source: @fawazahmed0/currency-api via jsDelivr CDN — free, no API key
 // ===================================================
 async function fetchCurrencyRates(priceInTHB) {
     try {
-        const res = await fetch('https://api.frankfurter.app/latest?from=THB&to=USD,EUR,GBP,JPY');
+        const res = await fetch(
+            'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/thb.json'
+        );
         if (!res.ok) return;
         const data = await res.json();
 
         const currencies = [
-            { code: 'USD', symbol: '$' },
-            { code: 'EUR', symbol: '€' },
-            { code: 'GBP', symbol: '£' },
-            { code: 'JPY', symbol: '¥' },
+            { code: 'usd', label: 'USD', symbol: '$' },
+            { code: 'eur', label: 'EUR', symbol: '€' },
+            { code: 'gbp', label: 'GBP', symbol: '£' },
+            { code: 'jpy', label: 'JPY', symbol: '¥' },
         ];
 
         const grid = document.getElementById('currency-grid');
         grid.innerHTML = currencies.map(c => {
-            const rate      = data.rates[c.code];
+            const rate      = data.thb[c.code];
             const converted = (priceInTHB * rate).toLocaleString(undefined, {
-                maximumFractionDigits: c.code === 'JPY' ? 0 : 2,
+                maximumFractionDigits: c.code === 'jpy' ? 0 : 2,
             });
             return `<span style="
                 background:rgba(255,255,255,0.07);
@@ -227,7 +220,7 @@ async function fetchCurrencyRates(priceInTHB) {
                 font-family:Inter,sans-serif;
                 font-size:0.85rem;
                 color:#e8d5b0;
-            "><strong>${c.code}</strong> ${c.symbol}${converted}</span>`;
+            "><strong>${c.label}</strong> ${c.symbol}${converted}</span>`;
         }).join('');
 
         document.getElementById('currency-section').style.display = 'block';

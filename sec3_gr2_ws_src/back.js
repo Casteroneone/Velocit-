@@ -3,7 +3,6 @@ const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
-const path = require('path');
 
 // Middleware
 app.use(cors());
@@ -24,8 +23,6 @@ db.connect(function(err) {
     console.log(`Connected to database: ${process.env.DB_NAME}`);
 });
 
-app.use(express.static(path.join(__dirname, '../sec3_gr2_fe_src')));
-
 // ── Convert Google Drive uc?id= URL to embeddable thumbnail URL ──
 function fixDriveUrl(url) {
     if (!url) return null;
@@ -40,11 +37,6 @@ function fixDriveUrl(url) {
 }
 
 // ── Root & Health ──────────────────────────────────────────
-// Testing... GET / → serves the homepage HTML file
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../sec3_gr2_fe_src/Homepage/index.html'));
-});
-
 // Testing... GET /health → checks database connection status
 app.get('/health', (req, res) => {
     db.ping((err) => {

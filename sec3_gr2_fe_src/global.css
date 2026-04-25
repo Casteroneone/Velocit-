@@ -277,7 +277,8 @@ nav a:hover {
 
     header nav a,
     header nav .search-btn,
-    header nav .login-btn {
+    header nav .login-btn,
+    header nav .profile-badge {
         width: 100%;
         padding: 0.78rem 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.07);
@@ -308,6 +309,23 @@ nav a:hover {
     }
 
     .login-btn:hover {
+        background: none !important;
+        color: var(--accent-color) !important;
+    }
+
+    header nav .profile-badge {
+        background: none;
+        border-radius: 0;
+        color: rgba(255, 255, 255, 0.8) !important;
+        padding: 0.78rem 0;
+        font-size: 0.85rem;
+    }
+
+    header nav .profile-badge .badge-icon {
+        background: rgba(165, 144, 124, 0.3);
+    }
+
+    header nav .profile-badge:hover {
         background: none !important;
         color: var(--accent-color) !important;
     }
@@ -373,21 +391,57 @@ footer {
 
 .footer-logo {
     font-family: var(--font-serif);
-    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-size: clamp(1.6rem, 2.5vw, 4rem);
     font-weight: 400;
 }
 
 .footer-info h4 {
     font-family: var(--font-serif);
-    font-size: 0.75rem;
+    /* font-size: 5rem; */
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 0.6rem;
+    margin: 0.6rem 0;
     font-weight: 700;
 }
 
 .footer-info p {
     font-family: var(--font-serif);
-    font-size: 0.8rem;
-    margin-bottom: 0.25rem;
+    font-size: 1rem;
+    margin: 0.8rem 0;
+}
+
+/* =============================================
+   STATUS BADGES  (car card overlays — brand, search, detail pages)
+   ============================================= */
+.status-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    padding: 4px 13px;
+    border-radius: 20px;
+    font-family: var(--font-serif);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    pointer-events: none;
+    border: 1.5px solid;
+}
+
+.status-available {
+    background: #edf7ed;
+    color: #2a7a2a;
+    border-color: #6abf6a;
+}
+
+.status-reserved {
+    background: #fdf5eb;
+    color: #6b4c23;
+    border-color: #c9a97a;
+}
+
+.status-repair {
+    background: #fdedf0;
+    color: #c0392b;
+    border-color: #e8a0a8;
 }
